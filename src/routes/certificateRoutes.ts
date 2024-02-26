@@ -5,4 +5,4 @@ const router = Router()
 
 router.post('/certificate', certificateController.newCertificate)
 
-module.exports = router
+export default router

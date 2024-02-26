@@ -9,10 +9,6 @@ export default class certificateController{
             const certPath: String = req.body.certPath
             const certPassword: String = req.body.certPassword
 
-            // const certPath: String = "C:\\Users\\Cliente\\Downloads\\CERTIFICADO_JOAO_VITOR_MOURA-SENHA_JoaovDOTmour02.p12"
-            // // Senha do certificado (se houver)
-            // const certPassword: String = 'Joaov.mour02';
-
             // Lê o conteúdo do arquivo do certificado PFX
             const pfxData = fs.readFileSync(certPath, 'binary');
 
