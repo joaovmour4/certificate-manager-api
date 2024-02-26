@@ -1,1 +1,16 @@
+# .js files
+build/
+
+# dependency files
 /node_modules 
+
+# IDE files
+.vscode/
+.idea/
+
+# env files
+.env
+
+# ts files
+*.tsbuildinfo
+
