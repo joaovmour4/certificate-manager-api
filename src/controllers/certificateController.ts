@@ -1,6 +1,18 @@
 import { Response, Request } from "express";
 import { Certificate, ICertificate } from "../schemas/certificateSchema";
 
+function removerAcentos(str: string): string {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function removerCaracteresEspeciais(str: string): string {
+    return str.replace(/[^\w\s]/gi, '');
+}
+
+function removerAcentosEspeciais(str: string): string {
+    let semAcentos = removerAcentos(str.toUpperCase());
+    return removerCaracteresEspeciais(semAcentos);
+}
 
 export default class certificateController{
     static async newCertificate(req: Request, res: Response) {
@@ -13,16 +25,11 @@ export default class certificateController{
 
             // Lê o conteúdo do arquivo do certificado PFX
             const pfxData = fs.readFileSync(certPath, 'binary');
-
-            // Decodifica o certificado PFX usando a senha
             const p12Asn1 = forge.asn1.fromDer(pfxData);
             const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, certPassword);
-
-            // Obtém informações sobre o certificado
             const bags = p12.getBags({ bagType: forge.pki.oids.certBag });
             const certBag = bags[forge.pki.oids.certBag][0];
             const cert = certBag.cert;
-            // console.log('Nº de Série do Certificado:', cert.serialNumber);
             const owner = cert.subject.attributes.find((attr: any) => attr.shortName === 'CN')
 
             const ownerDoc: string = owner.value.split(':')[1]
@@ -40,7 +47,7 @@ export default class certificateController{
 
             if(typeof newCertificate === null)
                 return res.status(500).json({message: 'Não foi prossível criar o documento.'})
-            return res.status(201).json(newCertificate)
+            return res.status(201).json({message: 'Certificado inserido com sucesso.'})
         }catch(err: any){
             return res.status(500).json({message: err.message})
         }
@@ -97,8 +104,35 @@ export default class certificateController{
             const date: Date = new Date()
             const valid: number = (certificate.valid.valueOf() - date.valueOf()) / (1000 * 60 * 60 * 24)
             if(valid < 0)
-                return res.status(202).json({message: 'O certificado está vencido.'})
-            return res.status(200).json({message: `Restam ${valid.toFixed()} dias para o vencimento.`})
+                return res.status(200).json({
+                    valid: false,
+                    message: 'O certificado está vencido.'
+                })
+            return res.status(200).json({
+                valid: true,
+                message: `Restam ${valid.toFixed()} dias para o vencimento.`
+            })
+        }catch(err: any){
+            return res.status(500).json({message: err.message})
+        }
+    }
+    static async getCertificates(req: Request, res: Response){
+        try{
+            const allCertificates = await Certificate.find()
+            if(!allCertificates)
+                return res.status(400).json({message: 'Não foi possível buscar os certificados.'})
+            return res.status(200).json(allCertificates)
+        }catch(err: any){
+            return res.status(500).json({message: err.message})
+        }
+    }
+    static async getCertificate(req: Request, res: Response){
+        try{
+            const owner: string = removerAcentosEspeciais(req.params.owner)
+            const certificates = await Certificate.find({owner: {$regex: owner}})
+            if(!certificates)
+                return res.status(400).json({message: 'Não foi possível buscar os certificados.'})
+            return res.status(200).json(certificates)
         }catch(err: any){
             return res.status(500).json({message: err.message})
         }
