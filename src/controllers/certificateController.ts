@@ -14,6 +14,12 @@ function removerAcentosEspeciais(str: string): string {
     return removerCaracteresEspeciais(semAcentos);
 }
 
+function isValidVerify(notAfter: any){
+    const date: Date = new Date()
+    const valid: number = (notAfter.valueOf() - date.valueOf()) / (1000 * 60 * 60 * 24)
+    return valid >= 0 ? true:false
+}
+
 export default class certificateController{
     static async newCertificate(req: Request, res: Response) {
         try{
@@ -36,13 +42,16 @@ export default class certificateController{
             if(await Certificate.findOne({docOwner: ownerDoc})){
                 return res.status(400).json({message: 'Já existe um certificado cadastrado para o CNPJ/CPF. Atualize o registro existente'})
             }
-                
+            
+            // const date: Date = new Date()
+            // const valid: number = (cert.validity.notAfter.valueOf() - date.valueOf()) / (1000 * 60 * 60 * 24)
 
             const newCertificate: ICertificate = await Certificate.create({
                 owner: owner.value.split(':')[0],
                 docOwner: ownerDoc,
                 issuing: cert.validity.notBefore,
-                valid: cert.validity.notAfter
+                valid: cert.validity.notAfter,
+                isValid: isValidVerify(cert.validity.notAfter)
             })
 
             if(typeof newCertificate === null)
@@ -81,7 +90,8 @@ export default class certificateController{
                 owner: owner.value.split(':')[0],
                 docOwner: owner.value.split(':')[1],
                 issuing: cert.validity.notBefore,
-                valid: cert.validity.notAfter
+                valid: cert.validity.notAfter,
+                isValid: isValidVerify(cert.validity.notAfter)
             })
 
             
