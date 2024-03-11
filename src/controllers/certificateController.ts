@@ -51,7 +51,6 @@ export default class certificateController{
                 docOwner: ownerDoc,
                 issuing: cert.validity.notBefore,
                 valid: cert.validity.notAfter,
-                isValid: isValidVerify(cert.validity.notAfter)
             })
 
             if(typeof newCertificate === null)
@@ -91,7 +90,6 @@ export default class certificateController{
                 docOwner: owner.value.split(':')[1],
                 issuing: cert.validity.notBefore,
                 valid: cert.validity.notAfter,
-                isValid: isValidVerify(cert.validity.notAfter)
             })
 
             

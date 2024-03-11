@@ -6,7 +6,6 @@ interface ICertificate {
     docOwner: string
     issuing: Date
     valid: Date
-    isValid: boolean
 }
 
 const certificateSchema = new Schema<ICertificate, Model<ICertificate>>({
@@ -14,7 +13,6 @@ const certificateSchema = new Schema<ICertificate, Model<ICertificate>>({
     docOwner: { type: String },
     issuing: { type: Date },
     valid: { type: Date },
-    isValid: { type: Boolean }
 })
 
 const Certificate: Model<ICertificate> = model('Certificate', certificateSchema)
