@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import certificateRoutes from './routes/certificateRoutes'
 import helmet from 'helmet'
 
+const pki = require('node-forge').pki
 const cors = require('cors')
 const dotenv = require('dotenv').config()
 
@@ -15,7 +16,17 @@ app.use(express.json())
 // Defining routes
 app.use('/', certificateRoutes)
 app.get('*', (req, res)=>{
-    return res.status(200).json({message: 'Server running.'})
+    // console.log(req.socket.getPeerCertificate())
+    // console.log(tls.rootCertificates[0])
+    // for(let i=0; tls.rootCertificates.length; i++){
+    //     const cert = pki.certificateFromPem(tls.rootCertificates[i]);
+    //     const subject = cert.subject.attributes.name
+            // .map((attr: any) => [attr.shortName, attr.value].join('='))
+            // .join(', ');
+
+        // console.log(subject);
+    // }
+    return res.status(200).json({message: 'Server Running.'})
 })
 
 // Connecting with DB and running the App

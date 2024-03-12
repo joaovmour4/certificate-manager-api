@@ -31,6 +31,7 @@ export default class certificateController{
 
             // Lê o conteúdo do arquivo do certificado PFX
             const pfxData = fs.readFileSync(certPath, 'binary');
+            console.log(pfxData)
             const p12Asn1 = forge.asn1.fromDer(pfxData);
             const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, certPassword);
             const bags = p12.getBags({ bagType: forge.pki.oids.certBag });
@@ -145,4 +146,32 @@ export default class certificateController{
             return res.status(500).json({message: err.message})
         }
     }
+
+
+    static async newCertificateByFile(req: Request, res: Response) {
+        try{
+            const forge = require('node-forge');
+            const fs = require('fs');
+            const pem = require('pem')
+
+            const certFile = req.body.certFile
+            const certPassword: String = req.body.certPassword
+            
+
+            console.log(certFile)
+
+            // pem.readPkcs12(certFile, {p12Password: certPassword}, (err: any, certificate: any)=>{
+            //     console.log(certificate)
+            // })
+
+            // const newCertificate = `${typeof certFile} + ${certPassword}`
+
+            // if(typeof newCertificate === null)
+            //     return res.status(500).json({message: 'Não foi prossível criar o documento.'})
+            return res.status(201).json({message: 'Certificado inserido com sucesso.', certFile: certFile})
+        }catch(err: any){
+            return res.status(500).json({message: err.message})
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ import certificateController from '../controllers/certificateController'
 const router = Router()
 
 router.post('/certificate', certificateController.newCertificate)
+router.post('/certificate/file', certificateController.newCertificateByFile)
 router.get('/certificate', certificateController.getCertificates)
 router.get('/certificate/:owner', certificateController.getCertificate)
 router.put('/certificate/:docOwner', certificateController.modifyCertificate)
