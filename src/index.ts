@@ -16,16 +16,6 @@ app.use(express.json())
 // Defining routes
 app.use('/', certificateRoutes)
 app.get('*', (req, res)=>{
-    // console.log(req.socket.getPeerCertificate())
-    // console.log(tls.rootCertificates[0])
-    // for(let i=0; tls.rootCertificates.length; i++){
-    //     const cert = pki.certificateFromPem(tls.rootCertificates[i]);
-    //     const subject = cert.subject.attributes.name
-            // .map((attr: any) => [attr.shortName, attr.value].join('='))
-            // .join(', ');
-
-        // console.log(subject);
-    // }
     return res.status(200).json({message: 'Server Running.'})
 })
 

@@ -21,23 +21,27 @@ function isValidVerify(notAfter: any){
 }
 
 export default class certificateController{
-    static async newCertificate(req: Request, res: Response) {
+    static async newCertificate(req: any, res: Response) {
         try{
             const forge = require('node-forge');
             const fs = require('fs');
 
-            const certPath: String = req.body.certPath
+            const certFile = req.file?.buffer
             const certPassword: String = req.body.certPassword
+
+            const certPath = `temp_${Date.now()}.pfx`;
+            fs.writeFileSync(certPath, certFile);
 
             // Lê o conteúdo do arquivo do certificado PFX
             const pfxData = fs.readFileSync(certPath, 'binary');
-            console.log(pfxData)
             const p12Asn1 = forge.asn1.fromDer(pfxData);
             const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, certPassword);
             const bags = p12.getBags({ bagType: forge.pki.oids.certBag });
             const certBag = bags[forge.pki.oids.certBag][0];
             const cert = certBag.cert;
             const owner = cert.subject.attributes.find((attr: any) => attr.shortName === 'CN')
+
+            fs.unlinkSync(certPath);
 
             const ownerDoc: string = owner.value.split(':')[1]
             if(await Certificate.findOne({docOwner: ownerDoc})){
@@ -148,27 +152,46 @@ export default class certificateController{
     }
 
 
-    static async newCertificateByFile(req: Request, res: Response) {
+    static async newCertificateByFile(req: any, res: Response) {
         try{
             const forge = require('node-forge');
             const fs = require('fs');
-            const pem = require('pem')
 
-            const certFile = req.body.certFile
+            const certFile = req.file?.buffer
             const certPassword: String = req.body.certPassword
             
+            const certPath = `temp_${Date.now()}.pfx`;
+            fs.writeFileSync(certPath, certFile);
 
-            console.log(certFile)
 
-            // pem.readPkcs12(certFile, {p12Password: certPassword}, (err: any, certificate: any)=>{
-            //     console.log(certificate)
-            // })
+            const pfxData = fs.readFileSync(certPath, 'binary')
+            const p12Asn1 = forge.asn1.fromDer(pfxData);
+            const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, certPassword);
+            const bags = p12.getBags({ bagType: forge.pki.oids.certBag });
+            const certBag = bags[forge.pki.oids.certBag][0];
+            const cert = certBag.cert;
+            const owner = cert.subject.attributes.find((attr: any) => attr.shortName === 'CN')
 
-            // const newCertificate = `${typeof certFile} + ${certPassword}`
+            const ownerDoc: string = owner.value.split(':')[1]
+            if(await Certificate.findOne({docOwner: ownerDoc})){
+                return res.status(400).json({message: 'Já existe um certificado cadastrado para o CNPJ/CPF. Atualize o registro existente'})
+            }
+
+            const newCertificate = {
+                owner: owner.value.split(':')[0],
+                docOwner: ownerDoc,
+                issuing: cert.validity.notBefore,
+                valid: cert.validity.notAfter,
+            }
+
+            console.log(newCertificate)
+
+            fs.unlinkSync(certPath);
+
 
             // if(typeof newCertificate === null)
             //     return res.status(500).json({message: 'Não foi prossível criar o documento.'})
-            return res.status(201).json({message: 'Certificado inserido com sucesso.', certFile: certFile})
+            return res.status(201).json({message: 'Certificado inserido com sucesso.'})
         }catch(err: any){
             return res.status(500).json({message: err.message})
         }
