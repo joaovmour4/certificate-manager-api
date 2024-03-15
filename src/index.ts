@@ -17,12 +17,12 @@ app.use(express.static(path.join(__dirname, '../build-front')));
 
 // Defining routes
 app.use('/', certificateRoutes)
-app.get('/', (req, res)=>{
+app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
 })
-app.get('*', (req, res)=>{
-    return res.status(200).json({message: 'Server Running.'})
-})
+// app.get('*', (req, res)=>{
+//     return res.status(200).json({message: 'Server Running.'})
+// })
 
 // Connecting with DB and running the App
 mongoose.set('strictQuery', false)

@@ -150,4 +150,15 @@ export default class certificateController{
             return res.status(500).json({message: err.message})
         }
     }
+    static async deleteCertificate(req: Request, res: Response){
+        try{
+            const id: string = req.params.id
+            const removeCertificate = await Certificate.deleteOne({_id: id})
+            if(!removeCertificate)
+                return res.status(404).json({message: 'O certificado solicitado não foi encontrado na base de dados.'})
+            return res.status(200).json({message: 'Certificado removido com sucesso.'})
+        }catch(err: any){
+            return res.status(500).json({message: err.message})
+        }
+    }
 }

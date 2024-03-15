@@ -8,5 +8,6 @@ router.get('/certificate', certificateController.getCertificates)
 router.get('/certificate/:owner', certificateController.getCertificate)
 router.put('/certificate/:docOwner', certificateController.modifyCertificate)
 router.get('/certificate/validity/:docOwner', certificateController.validityVerify)
+router.delete('/certificate/:id', certificateController.deleteCertificate)
 
 export default router
