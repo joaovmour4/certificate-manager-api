@@ -142,10 +142,26 @@ export default class certificateController{
     static async getCertificate(req: Request, res: Response){
         try{
             const owner: string = removerAcentosEspeciais(req.params.owner)
+            const validFilter: string = req.params.validFilter
+
             const certificates = await Certificate.find({owner: {$regex: owner}})
+
             if(!certificates)
                 return res.status(400).json({message: 'Não foi possível buscar os certificados.'})
-            return res.status(200).json(certificates)
+
+            if(validFilter === 'all')
+                return res.status(200).json(certificates)
+
+            var certificatesFiltered: Array<ICertificate> = []
+            certificates.map(certificate => {
+                if(validFilter === 'true' && isValidVerify(certificate.valid)){
+                    certificatesFiltered.push(certificate)
+                }else if(validFilter === 'false' && !isValidVerify(certificate.valid)){
+                    certificatesFiltered.push(certificate)
+                }
+            })
+
+            return res.status(200).json(certificatesFiltered)
         }catch(err: any){
             return res.status(500).json({message: err.message})
         }
