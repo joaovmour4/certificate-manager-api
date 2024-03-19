@@ -65,7 +65,7 @@ export default class certificateController{
             return res.status(500).json({message: err.message})
         }
     }
-    static async modifyCertificate(req: Request, res: Response){
+    static async modifyCertificate(req: any, res: Response){
         try{
             const forge = require('node-forge');
             const fs = require('fs');
@@ -75,8 +75,11 @@ export default class certificateController{
             if(!certificate)
                 return res.status(404).json({message: 'O certificado requisitado não existe na base de dados.'})
 
-            const certPath: String = req.body.certPath
+            const certFile = req.file?.buffer
             const certPassword: String = req.body.certPassword
+
+            const certPath = `temp_${Date.now()}.pfx`;
+            fs.writeFileSync(certPath, certFile);
 
             // Lê o conteúdo do arquivo do certificado PFX
             const pfxData = fs.readFileSync(certPath, 'binary')
@@ -85,6 +88,8 @@ export default class certificateController{
             const bags = p12.getBags({ bagType: forge.pki.oids.certBag })
             const certBag = bags[forge.pki.oids.certBag][0]
             const cert = certBag.cert
+
+            fs.unlinkSync(certPath)
 
             const owner = cert.subject.attributes.find((attr: any) => attr.shortName === 'CN')
             if(certificate.docOwner !== owner.value.split(':')[1])
