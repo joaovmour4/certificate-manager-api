@@ -34,14 +34,18 @@ export default class certificateController{
 
             // Lê o conteúdo do arquivo do certificado PFX
             const pfxData = fs.readFileSync(certPath, 'binary');
+            fs.unlinkSync(certPath);
             const p12Asn1 = forge.asn1.fromDer(pfxData);
-            const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, certPassword);
+            try{
+                var p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, certPassword);
+            }catch(err){
+                return res.status(400).json({message: 'A senha informada está incorreta.'})
+            }
             const bags = p12.getBags({ bagType: forge.pki.oids.certBag });
             const certBag = bags[forge.pki.oids.certBag][0];
             const cert = certBag.cert;
             const owner = cert.subject.attributes.find((attr: any) => attr.shortName === 'CN')
 
-            fs.unlinkSync(certPath);
 
             const ownerDoc: string = owner.value.split(':')[1]
             if(await Certificate.findOne({docOwner: ownerDoc})){
@@ -83,13 +87,13 @@ export default class certificateController{
 
             // Lê o conteúdo do arquivo do certificado PFX
             const pfxData = fs.readFileSync(certPath, 'binary')
+            fs.unlinkSync(certPath)
             const p12Asn1 = forge.asn1.fromDer(pfxData)
             const p12 = forge.pkcs12.pkcs12FromAsn1(p12Asn1, certPassword)
             const bags = p12.getBags({ bagType: forge.pki.oids.certBag })
             const certBag = bags[forge.pki.oids.certBag][0]
             const cert = certBag.cert
 
-            fs.unlinkSync(certPath)
 
             const owner = cert.subject.attributes.find((attr: any) => attr.shortName === 'CN')
             if(certificate.docOwner !== owner.value.split(':')[1])
