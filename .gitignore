@@ -1,5 +1,5 @@
 # .js files
-build/
+build*/
 
 # dependency files
 /node_modules 
