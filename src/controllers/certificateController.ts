@@ -153,7 +153,7 @@ export default class certificateController{
             const owner: string = removerAcentosEspeciais(req.params.owner)
             const validFilter: string = req.params.validFilter
 
-            const certificates = await Certificate.find({owner: {$regex: owner}})
+            const certificates = await Certificate.find({owner: {$regex: owner}}).sort('owner')
 
             if(!certificates)
                 return res.status(400).json({message: 'Não foi possível buscar os certificados.'})
