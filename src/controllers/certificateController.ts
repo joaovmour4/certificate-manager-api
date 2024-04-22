@@ -17,9 +17,15 @@ function removerAcentosEspeciais(str: string): string {
 function isValidVerify(notAfter: any){
     const date: Date = new Date()
     const valid: number = (notAfter.valueOf() - date.valueOf()) / (1000 * 60 * 60 * 24)
-    return valid >= 0 ? true:false
+    
+    if(valid >= 0 && valid <= 30)
+        return 'almost'
+    else if(valid >= 0)
+        return 'valid'
+    else
+        return 'invalid'
 }
-
+export { removerAcentosEspeciais }
 export default class certificateController{
     static async newCertificate(req: any, res: Response) {
         try{
@@ -163,9 +169,11 @@ export default class certificateController{
 
             var certificatesFiltered: Array<ICertificate> = []
             certificates.map(certificate => {
-                if(validFilter === 'true' && isValidVerify(certificate.valid)){
+                if(validFilter === 'valid' && isValidVerify(certificate.valid) === 'valid'){
                     certificatesFiltered.push(certificate)
-                }else if(validFilter === 'false' && !isValidVerify(certificate.valid)){
+                }else if(validFilter === 'invalid' && isValidVerify(certificate.valid) === 'invalid'){
+                    certificatesFiltered.push(certificate)
+                }else if(validFilter === 'almost' && isValidVerify(certificate.valid) === 'almost'){
                     certificatesFiltered.push(certificate)
                 }
             })

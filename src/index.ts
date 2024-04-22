@@ -1,6 +1,7 @@
 import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import certificateRoutes from './routes/certificateRoutes'
+import emailRoutes from './routes/emailRoutes'
 import helmet from 'helmet'
 import path from 'path'
 
@@ -16,7 +17,7 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, '../build-front')));
 
 // Defining routes
-app.use('/', certificateRoutes)
+app.use('/', certificateRoutes, emailRoutes)
 app.get('*', async (req, res)=>{
     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
 })
