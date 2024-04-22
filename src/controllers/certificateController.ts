@@ -19,7 +19,7 @@ function isValidVerify(notAfter: any){
     const valid: number = (notAfter.valueOf() - date.valueOf()) / (1000 * 60 * 60 * 24)
     return valid >= 0 ? true:false
 }
-
+export { removerAcentosEspeciais }
 export default class certificateController{
     static async newCertificate(req: any, res: Response) {
         try{
