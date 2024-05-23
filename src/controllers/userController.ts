@@ -2,6 +2,7 @@ import { Response, Request, ErrorRequestHandler } from "express"
 import Usuario, { UsuarioAttributes } from "../schemas/userSchema"
 import dotenv from 'dotenv'
 import Empresa from "../schemas/EmpresaSchema"
+import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema"
 dotenv.config()
 
 
@@ -43,7 +44,7 @@ export default class usuarioController{
     }
     static async getUsers(req: Request, res: Response){
         try{
-            const users = await Usuario.findAll({include: [Empresa]})
+            const users = await Usuario.findAll()
 
             return res.status(200).json(users)
 
@@ -113,6 +114,52 @@ export default class usuarioController{
             }
             return res.status(404).json({message: 'O Usuário informado não foi encontrado na base de dados.'})
 
+        }catch(err: any){
+            return res.status(500).json({error: err.mesage})
+        }
+    }
+
+    // Atividades
+    static async realizaAtividade(req: Request, res: Response){
+        try{
+            const idEmpresa = req.body.idEmpresa
+            const idAtividade = req.body.idAtividade
+
+            const atividade = await EmpresaAtividade.findOne({where: {
+                EmpresaidEmpresa: idEmpresa,
+                AtividadeIdAtividade: idAtividade
+            }})
+
+            if(!atividade)
+                return res.status(404).json({error: 'A Empresa não realiza esta atividade.'})
+
+            const updateAtividade = await atividade?.update({
+                dataRealizacao: new Date()
+            })
+
+            return res.status(200).json({message: 'Atividade finalizada com sucesso.', updateAtividade})
+        }catch(err: any){
+            return res.status(500).json({error: err.mesage})
+        }
+    }
+    static async desmarcaAtividade(req: Request, res: Response){
+        try{
+            const idEmpresa = req.body.idEmpresa
+            const idAtividade = req.body.idAtividade
+
+            const atividade = await EmpresaAtividade.findOne({where: {
+                EmpresaidEmpresa: idEmpresa,
+                AtividadeIdAtividade: idAtividade
+            }})
+
+            if(!atividade)
+                return res.status(404).json({error: 'A Empresa não realiza esta atividade.'})
+
+            const updateAtividade = await atividade?.update({
+                dataRealizacao: null
+            })
+
+            return res.status(200).json({message: 'Atividade movida com sucesso para pendentes.', updateAtividade})
         }catch(err: any){
             return res.status(500).json({error: err.mesage})
         }

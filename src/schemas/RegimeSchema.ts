@@ -1,4 +1,4 @@
-import { DataTypes, HasMany, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize";
 
 interface RegimeAttributes{

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import Empresa from "../schemas/EmpresaSchema";
 import Regime from "../schemas/RegimeSchema";
-import RegimeAtividade from "../schemas/AtividadeRegimeSchema";
 import Usuario from "../schemas/userSchema";
-import UsuarioEmpresa from "../schemas/userEmpresaSchema";
 import Atividade from "../schemas/AtividadeSchema";
+import Obrigacao from "../schemas/ObrigacaoSchema";
+import Competencia from "../schemas/CompetenciaSchema";
 
 export default class empresaController{
     static async createEmpresa(req: Request, res: Response){
@@ -42,6 +42,9 @@ export default class empresaController{
     }
     static async getEmpresas(req: Request, res: Response){
         try{
+            const mes = Number(req.query.mes)
+            const ano = Number(req.query.ano)
+
             const empresas = await Empresa.findAll({
                 include: [
                     {
@@ -51,9 +54,23 @@ export default class empresaController{
                     {
                         model: Regime,
                         include: [{
-                            model: Atividade,
+                            model: Obrigacao,
                             through: {attributes: []}
                         }]
+                    },
+                    {
+                        model: Atividade,
+                        through: {attributes: ['dataRealizacao']},
+                        include: [
+                            {
+                                model: Competencia,
+                                where: {
+                                    mes: mes,
+                                    ano: ano
+                                }
+                            },
+                            Obrigacao
+                        ],
                     }
                 ]
             })
@@ -77,6 +94,25 @@ export default class empresaController{
             if(!updateEmpresa)
                 return res.status(404).json({error: 'Empresa não encontrada.'})
             return res.status(200).json({message: 'Status alterado com sucesso.', updateEmpresa})
+
+        }catch(err: any){
+            return res.status(500).json({error: err.message})
+        }
+    }
+    static async getEmpresa(req: Request, res: Response){
+        try{
+            const idEmpresa = Number(req.params.id)
+            const empresa = await Empresa.findByPk(idEmpresa, {
+                include: [
+                    {
+                        model: Atividade,
+                        through: {attributes: ['dataRealizacao']},
+                        include: [Competencia, Obrigacao]
+                    }
+                ]
+            })
+
+            return res.status(200).json({empresa})
 
         }catch(err: any){
             return res.status(500).json({error: err.message})

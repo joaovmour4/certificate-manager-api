@@ -1,7 +1,7 @@
 import { DataTypes, HasOne, Model, Optional } from "sequelize";
 import sequelize from "../config/sequelize";
 import Regime from "./RegimeSchema";
-import Usuario from "./userSchema";
+import EmpresaAtividade from "./EmpresaAtividadeSchema";
 
 interface EmpresaAttributes{
     idEmpresa: number

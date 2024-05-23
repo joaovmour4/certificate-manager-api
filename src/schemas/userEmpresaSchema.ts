@@ -9,6 +9,7 @@ interface UsuarioEmpresaAttributes{
 }
 
 const UsuarioEmpresa = sequelize.define('UsuarioEmpresa', {},{
+    tableName: 'UsuarioEmpresa',
     timestamps: false
 })
 

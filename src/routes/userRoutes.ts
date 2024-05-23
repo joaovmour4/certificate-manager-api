@@ -9,5 +9,9 @@ router.get('/user', usuarioController.getUsers)
 router.get('/user/:id', usuarioController.getUserById)
 router.delete('/user/:id', usuarioController.deleteUser)
 
+// Atividade
+router.post('/user/atividade', usuarioController.realizaAtividade)
+router.post('/user/atividade/cancelarAtividade', usuarioController.desmarcaAtividade)
+
 
 export default router

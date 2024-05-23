@@ -5,6 +5,7 @@ const router = Router()
 
 router.post('/empresa', empresaController.createEmpresa)
 router.get('/empresa', empresaController.getEmpresas)
+router.get('/empresa/:id', empresaController.getEmpresa)
 router.patch('/empresa/:id', empresaController.setActiveEmpresa)
 
 

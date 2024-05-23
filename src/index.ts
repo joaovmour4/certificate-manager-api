@@ -5,10 +5,12 @@ import emailRoutes from './routes/emailRoutes'
 import userRoutes from './routes/userRoutes'
 import regimeRoutes from './routes/regimeRoutes'
 import empresaRoutes from './routes/empresaRoutes'
-import atividadeRoutes from './routes/atividadeRoutes'
+import obrigacaoRoutes from './routes/obrigacaoRoutes'
 import usuarioEmpresaRoutes from './routes/userEmpresaRoutes'
-import regimeAtividadeRoutes from './routes/regimeAtividadeRoutes'
+import regimeObrigacaoRoutes from './routes/regimeObrigacaoRoutes'
 import competenciaRoutes from './routes/competenciaRoutes'
+import competenciaAtividadeRoutes from './routes/competenciaAtividadeRoutes'
+import EmpresaAtividadeRoutes from './routes/empresaAtividadeRoutes'
 import helmet from 'helmet'
 import path from 'path'
 
@@ -32,10 +34,12 @@ app.use('/',
     userRoutes, 
     regimeRoutes, 
     empresaRoutes,
-    atividadeRoutes,
+    obrigacaoRoutes,
     usuarioEmpresaRoutes,
-    regimeAtividadeRoutes,
-    competenciaRoutes
+    regimeObrigacaoRoutes,
+    competenciaRoutes,
+    competenciaAtividadeRoutes,
+    EmpresaAtividadeRoutes
 )
 app.get('*', async (req, res)=>{
     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));

@@ -1,6 +1,6 @@
 import { Response, Request } from "express"
 import Regime from "../schemas/RegimeSchema"
-import Atividade from "../schemas/AtividadeSchema"
+import Atividade from "../schemas/ObrigacaoSchema"
 
 
 export default class regimeController{
