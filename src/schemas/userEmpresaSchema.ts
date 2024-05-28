@@ -13,8 +13,8 @@ const UsuarioEmpresa = sequelize.define('UsuarioEmpresa', {},{
     timestamps: false
 })
 
-Empresa.belongsToMany(Usuario, {through: UsuarioEmpresa})
-Usuario.belongsToMany(Empresa, {through: UsuarioEmpresa})
+Empresa.belongsToMany(Usuario, {through: UsuarioEmpresa, foreignKey: 'idEmpresa'})
+Usuario.belongsToMany(Empresa, {through: UsuarioEmpresa, foreignKey: 'idUsuario'})
 
 export { UsuarioEmpresaAttributes }
 export default UsuarioEmpresa

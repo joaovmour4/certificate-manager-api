@@ -9,8 +9,8 @@ export default class UsuarioEmpresaController{
             const idUsuario: number = req.body.idUsuario
 
             const userEmpresa = await UsuarioEmpresa.create({
-                EmpresaIdEmpresa: idEmpresa,
-                UsuarioIdUsuario: idUsuario
+                idEmpresa: idEmpresa,
+                idUsuario: idUsuario
             })
 
             if(userEmpresa)
@@ -29,8 +29,8 @@ export default class UsuarioEmpresaController{
             const idUsuario: number = req.body.idUsuario
 
             const userEmpresa = await UsuarioEmpresa.destroy({where:{
-                EmpresaIdEmpresa: idEmpresa,
-                UsuarioIdUsuario: idUsuario
+                idEmpresa: idEmpresa,
+                idUsuario: idUsuario
             }})
 
             if(userEmpresa)

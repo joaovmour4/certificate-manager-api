@@ -1,10 +1,25 @@
 import { Request, Response } from "express";
+import { Op, Model } from "sequelize";
 import Empresa from "../schemas/EmpresaSchema";
 import Regime from "../schemas/RegimeSchema";
-import Usuario from "../schemas/userSchema";
+import Usuario, { UsuarioAttributes } from "../schemas/userSchema";
 import Atividade from "../schemas/AtividadeSchema";
 import Obrigacao from "../schemas/ObrigacaoSchema";
 import Competencia from "../schemas/CompetenciaSchema";
+
+interface whereCondition{
+    nameEmpresa: string
+    idRegime?: string | number
+}
+interface Usuario{
+    idUsuario: number
+    username: string
+    email: string
+    login: string
+    password: string
+    cargo: string
+    idSetor: number
+}
 
 export default class empresaController{
     static async createEmpresa(req: Request, res: Response){
@@ -42,11 +57,38 @@ export default class empresaController{
     }
     static async getEmpresas(req: Request, res: Response){
         try{
+            const filter = req.params.filter
+            const nameEmpresa = req.query.nameEmpresa
             const mes = Number(req.query.mes)
             const ano = Number(req.query.ano)
+            const idUsuario = Number(req.query.user)
+            const user: any = await Usuario.findByPk(idUsuario)
 
-            const empresas = await Empresa.findAll({
+            let whereCondition = {}
+
+            let userFilter: {} | undefined = {}
+
+            if(user.cargo !== 'admin' && user.cargo !== 'supervisor')
+                userFilter = {idUsuario: idUsuario}
+            else
+                userFilter = undefined
+            
+            if(filter !== 'all')
+                whereCondition = {idRegime: Number(filter)}
+
+            if(nameEmpresa)
+                whereCondition = {...whereCondition, 
+                nameEmpresa: {[Op.substring]: nameEmpresa}
+            }
+            console.log(userFilter)
+
+            const empresas = await Empresa.findAll({where: whereCondition,
                 include: [
+                    {
+                        model: Usuario,
+                        as: 'responsavel',
+                        where: userFilter
+                    },
                     {
                         model: Usuario,
                         through: {attributes: []},
@@ -95,6 +137,25 @@ export default class empresaController{
                 return res.status(404).json({error: 'Empresa não encontrada.'})
             return res.status(200).json({message: 'Status alterado com sucesso.', updateEmpresa})
 
+        }catch(err: any){
+            return res.status(500).json({error: err.message})
+        }
+    }
+    static async setUsuarioResponsavel(req: Request, res: Response){
+        try{
+            const idEmpresa: number = req.body.idEmpresa
+            const idUsuario: number = req.body.idUsuario
+
+            const updateEmpresa = await Empresa.update(
+                {idUsuarioResponsavel: idUsuario},
+                {where: { idEmpresa: idEmpresa }}
+            )
+
+            if(!updateEmpresa)
+                return res.status(400).json({error: 'Não foi possivel realizar a alteração.'})
+            return res.status(200).json({message: 'Usuário responsável atribuido com sucesso.', updateEmpresa})
+
+            
         }catch(err: any){
             return res.status(500).json({error: err.message})
         }

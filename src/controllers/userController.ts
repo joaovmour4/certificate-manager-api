@@ -1,9 +1,6 @@
 import { Response, Request, ErrorRequestHandler } from "express"
 import Usuario, { UsuarioAttributes } from "../schemas/userSchema"
-import dotenv from 'dotenv'
-import Empresa from "../schemas/EmpresaSchema"
 import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema"
-dotenv.config()
 
 
 export default class usuarioController{
@@ -13,6 +10,8 @@ export default class usuarioController{
             const email: string = req.body.email
             const login: string = req.body.login
             const password: string = req.body.password
+            const idSetor: number = req.body.idSetor
+            const cargo: string = req.body.cargo
 
             let newUser: any
             try{
@@ -20,7 +19,9 @@ export default class usuarioController{
                     username: username,
                     email: email,
                     login: login,
-                    password: password
+                    password: password,
+                    idSetor: idSetor,
+                    cargo: cargo
                 })
             }catch(err: any){
                 if(err?.errors[0].type === 'unique violation'){

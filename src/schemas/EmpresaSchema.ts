@@ -2,6 +2,7 @@ import { DataTypes, HasOne, Model, Optional } from "sequelize";
 import sequelize from "../config/sequelize";
 import Regime from "./RegimeSchema";
 import EmpresaAtividade from "./EmpresaAtividadeSchema";
+import Usuario from "./userSchema";
 
 interface EmpresaAttributes{
     idEmpresa: number
@@ -43,6 +44,14 @@ const Empresa = sequelize.define('Empresas', {
     representante: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    idUsuarioResponsavel: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: true,
+        references: {
+            model: Usuario,
+            key: 'idUsuario'
+        }
     }
 }, {
     tableName:'Empresa',
@@ -51,12 +60,8 @@ const Empresa = sequelize.define('Empresas', {
 })
 
 Empresa.belongsTo(Regime, {foreignKey: 'idRegime'})
-// Empresa.belongsToMany(Usuario, {
-//     through: 'UsuarioEmpresa', 
-//     as: 'responsaveis',
-//     foreignKey: 'idEmpresa',
-//     otherKey: 'idUsuario'
-// })
+Empresa.belongsTo(Usuario, {foreignKey: 'idUsuarioResponsavel', as: 'responsavel'})
+Usuario.hasMany(Empresa, {foreignKey: 'idUsuarioResponsavel'})
 
 export { EmpresaAttributes }
 export default Empresa

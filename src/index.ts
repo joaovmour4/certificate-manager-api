@@ -11,6 +11,8 @@ import regimeObrigacaoRoutes from './routes/regimeObrigacaoRoutes'
 import competenciaRoutes from './routes/competenciaRoutes'
 import competenciaAtividadeRoutes from './routes/competenciaAtividadeRoutes'
 import EmpresaAtividadeRoutes from './routes/empresaAtividadeRoutes'
+import SetorRoutes from './routes/setorRoutes'
+import SetorEmpresaRoutes from './routes/setorEmpresaRoutes'
 import helmet from 'helmet'
 import path from 'path'
 
@@ -39,7 +41,9 @@ app.use('/',
     regimeObrigacaoRoutes,
     competenciaRoutes,
     competenciaAtividadeRoutes,
-    EmpresaAtividadeRoutes
+    EmpresaAtividadeRoutes,
+    SetorEmpresaRoutes,
+    SetorRoutes
 )
 app.get('*', async (req, res)=>{
     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
