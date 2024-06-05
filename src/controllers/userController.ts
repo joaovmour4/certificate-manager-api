@@ -1,8 +1,20 @@
-import { Response, Request, ErrorRequestHandler } from "express"
+import { Response, Request } from "express"
 import Usuario, { UsuarioAttributes } from "../schemas/userSchema"
 import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema"
+import auth from "../services/auth"
+import PasswordCrypt from "../services/passwordCrypt"
 
+interface User{
+    idUsuario: number
+    username: string
+    email: string
+    login: string
+    password: string
+    idSetor: number
+    cargo: string
+}
 
+export { User }
 export default class usuarioController{
     static async createUsuario(req: Request, res: Response){
         try{
@@ -13,13 +25,15 @@ export default class usuarioController{
             const idSetor: number = req.body.idSetor
             const cargo: string = req.body.cargo
 
+            const passwordHash: any = await PasswordCrypt.encrypt(password)
+
             let newUser: any
             try{
                 newUser = await Usuario.create({
                     username: username,
                     email: email,
                     login: login,
-                    password: password,
+                    password: passwordHash.success?passwordHash.hash:password,
                     idSetor: idSetor,
                     cargo: cargo
                 })
@@ -47,7 +61,7 @@ export default class usuarioController{
         try{
             const users = await Usuario.findAll()
 
-            return res.status(200).json(users)
+            return res.status(200).json({users})
 
         }catch(err: any){
             return res.status(500).json({message: err.message})
@@ -161,6 +175,33 @@ export default class usuarioController{
             })
 
             return res.status(200).json({message: 'Atividade movida com sucesso para pendentes.', updateAtividade})
+        }catch(err: any){
+            return res.status(500).json({error: err.mesage})
+        }
+    }
+
+    // Autenticação
+    static async login(req: Request, res: Response){
+        try{
+            const login: string = req.body.login
+            const password: string = req.body.password
+
+            const user: any = await Usuario.findOne({where: {login: login}})
+            if(!user)
+                return res.status(404).json({message: 'Usuário não encontrado.'})
+            const passwordVerify = await PasswordCrypt.compare(password, user.password)
+            if(!passwordVerify)
+                return res.status(400).json({message: 'Usuário ou senha incorretos.'})
+
+            delete user.dataValues.password
+            const authentication = await auth(user)
+
+            if(!authentication.auth)
+                return res.status(400).json({message: 'Ocorreu um erro na autenticação'})
+            return res.status(200).json({
+                message: 'Usuário autenticado com sucesso',
+                authentication
+            })
         }catch(err: any){
             return res.status(500).json({error: err.mesage})
         }

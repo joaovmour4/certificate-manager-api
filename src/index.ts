@@ -1,4 +1,5 @@
-import express, { Application } from 'express'
+import express, { Application, Request, Response } from 'express'
+import { JwtPayload } from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import certificateRoutes from './routes/certificateRoutes'
 import emailRoutes from './routes/emailRoutes'
@@ -21,6 +22,7 @@ import dbInit from './config/dbInit'
 const pki = require('node-forge').pki
 const cors = require('cors')
 const dotenv = require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
 // Basic App configs
 const app: Application = express()
@@ -45,6 +47,26 @@ app.use('/',
     SetorEmpresaRoutes,
     SetorRoutes
 )
+// Ping de autenticação
+app.get('/pingAuth', (req: Request, res: Response) => {
+    try{
+        if(req.headers['authorization']){
+            const token = req.headers['authorization'].split(' ')[1]
+            jwt.verify(token, process.env.JWT_SECRET, (err: Error, decoded: JwtPayload)=>{
+                if(err)
+                    return res.status(401).json({auth: false, message: 'Token expirado, realize o login novamente.'})
+
+                return res.status(200).json({auth: true, decoded})
+            })
+
+        }else{
+            return res.status(401).json({auth: false, message: 'Nenhum token de autenticação fornecido.'})
+        }
+    }catch(err: any){
+        return res.status(500).json({auth: false, error: err.message})
+    }
+})
+
 app.get('*', async (req, res)=>{
     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
 })
