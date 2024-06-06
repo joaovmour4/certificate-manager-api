@@ -6,6 +6,7 @@ import Usuario, { UsuarioAttributes } from "../schemas/userSchema";
 import Atividade from "../schemas/AtividadeSchema";
 import Obrigacao from "../schemas/ObrigacaoSchema";
 import Competencia from "../schemas/CompetenciaSchema";
+import Setor from "../schemas/SetorSchema";
 
 interface whereCondition{
     nameEmpresa: string
@@ -92,6 +93,13 @@ export default class empresaController{
                     {
                         model: Usuario,
                         through: {attributes: []},
+                    },
+                    {
+                        model: Setor,
+                        through: {attributes: []},
+                        where: {
+                            idSetor: user.idSetor
+                        }
                     },
                     {
                         model: Regime,
