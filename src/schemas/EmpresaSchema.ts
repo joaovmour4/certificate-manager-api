@@ -1,15 +1,19 @@
-import { DataTypes, HasOne, Model, Optional } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize";
 import Regime from "./RegimeSchema";
-import EmpresaAtividade from "./EmpresaAtividadeSchema";
 import Usuario from "./userSchema";
+import { Json } from "sequelize/types/utils";
 
 interface EmpresaAttributes{
     idEmpresa: number
-    username: string
-    email: string
-    login: string
-    password: string
+    nameEmpresa: string
+    activeEmpresa: boolean
+    codigoQuestor: number
+    cnpjEmpresa: string
+    inscricaoEmpresa: string
+    representante: string
+    idUsuarioResponsavel: number
+    situacaoFinanceiro: Json
 }
 
 const Empresa = sequelize.define('Empresas', {
@@ -52,6 +56,10 @@ const Empresa = sequelize.define('Empresas', {
             model: Usuario,
             key: 'idUsuario'
         }
+    },
+    situacaoFinanceiro: {
+        type: DataTypes.JSON,
+        allowNull: false
     }
 }, {
     tableName:'Empresa',

@@ -2,6 +2,7 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize";
 import Empresa from "./EmpresaSchema";
 import Atividade from "./AtividadeSchema";
+import Usuario from "./userSchema";
 
 interface EmpresaAtividadeAttributes{
     idCompetencia: number
@@ -25,6 +26,14 @@ const EmpresaAtividade = sequelize.define('EmpresaAtividade', {
     dataRealizacao: {
         type: DataTypes.DATE,
         allowNull: true
+    },
+    idUsuario: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: true,
+        references:{
+            model: Usuario,
+            key: 'idUsuario'
+        }
     }
 },{
     tableName: 'EmpresaAtividade',
@@ -33,6 +42,8 @@ const EmpresaAtividade = sequelize.define('EmpresaAtividade', {
 
 Empresa.belongsToMany(Atividade, {through: EmpresaAtividade})
 Atividade.belongsToMany(Empresa, {through: EmpresaAtividade})
+EmpresaAtividade.belongsTo(Usuario, {foreignKey: 'idUsuario'})
+Usuario.hasMany(EmpresaAtividade, {foreignKey: 'idUsuario'})
 
 export { EmpresaAtividadeAttributes }
 export default EmpresaAtividade

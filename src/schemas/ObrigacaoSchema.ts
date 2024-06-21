@@ -4,8 +4,9 @@ import Regime from "./RegimeSchema";
 import RegimeAtividade from "./RegimeObrigacaoSchema";
 
 interface ObrigacaoAttributes{
-    idAtividade: number
-    atividadeName: string
+    idObrigacao: number
+    obrigacaoName: string
+    obrigacaoShortName: string
 }
 
 const Obrigacao = sequelize.define('Obrigacaos', {

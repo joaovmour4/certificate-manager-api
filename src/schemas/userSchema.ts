@@ -36,7 +36,8 @@ const Usuario = sequelize.define('Usuarios', {
     },
     password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+
     },
     cargo: {
         type: DataTypes.ENUM,
@@ -53,7 +54,15 @@ const Usuario = sequelize.define('Usuarios', {
 }, {
     tableName: "Usuario",
     timestamps: true,
-    paranoid: false
+    paranoid: false,
+    defaultScope: {
+        attributes: { exclude: ['password'] }
+    },
+    scopes: {
+        withPassword: {
+            attributes: { include: ['password'] },
+        }
+    }
 })
 
 Setor.hasMany(Usuario, {foreignKey: 'idSetor'})

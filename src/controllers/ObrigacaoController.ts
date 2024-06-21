@@ -1,15 +1,22 @@
 import Obrigacao, { ObrigacaoAttributes } from "../schemas/ObrigacaoSchema";
 import { Request, Response } from "express";
+import RegimeObrigacao from "../schemas/RegimeObrigacaoSchema";
 
 export default class ObrigacaoController{
     static async createObrigacao(req: Request, res: Response){
         try{
             const obrigacaoName: string = req.body.name
+            const obrigacaoShortName: string = req.body.shortName
+            const idRegime: number = req.body.idRegime
             if(!obrigacaoName)
                 return res.status(400).json({error: 'Informe o nome da Obrigacao.'})
-            const newObrigacao = await Obrigacao.create({
+            const newObrigacao: any = await Obrigacao.create({
                 obrigacaoName: obrigacaoName,
-
+                obrigacaoShortName: obrigacaoShortName
+            })
+            RegimeObrigacao.create({
+                ObrigacaoIdObrigacao: newObrigacao.idObrigacao,
+                RegimeIdRegime: idRegime
             })
             
             return res.status(201).json({message: 'Obrigacao inserida com sucesso.', newObrigacao})

@@ -3,6 +3,7 @@ import Usuario, { UsuarioAttributes } from "../schemas/userSchema"
 import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema"
 import auth from "../services/auth"
 import PasswordCrypt from "../services/passwordCrypt"
+import Setor from "../schemas/SetorSchema"
 
 interface User{
     idUsuario: number
@@ -11,6 +12,13 @@ interface User{
     login: string
     password: string
     idSetor: number
+    cargo: string
+}
+interface Data{
+    username: string,
+    email: string,
+    login: string,
+    password?: string
     cargo: string
 }
 
@@ -22,7 +30,7 @@ export default class usuarioController{
             const email: string = req.body.email
             const login: string = req.body.login
             const password: string = req.body.password
-            const idSetor: number = req.body.idSetor
+            const idSetor: number = res.user.cargo === 'admin' ? req.body.idSetor : res.user.idSetor
             const cargo: string = req.body.cargo
 
             const passwordHash: any = await PasswordCrypt.encrypt(password)
@@ -33,7 +41,7 @@ export default class usuarioController{
                     username: username,
                     email: email,
                     login: login,
-                    password: passwordHash.success?passwordHash.hash:password,
+                    password: passwordHash.success && passwordHash.hash,
                     idSetor: idSetor,
                     cargo: cargo
                 })
@@ -59,9 +67,17 @@ export default class usuarioController{
     }
     static async getUsers(req: Request, res: Response){
         try{
-            const users = await Usuario.findAll()
+            var whereCondition = {}
+            if(res.user.cargo !== 'admin')
+                whereCondition = {
+                    idSetor: res.user.idSetor
+                }
+            const users = await Usuario.findAll({
+                where: whereCondition,
+                include: Setor
+            })
 
-            return res.status(200).json({users})
+            return res.status(200).json(users)
 
         }catch(err: any){
             return res.status(500).json({message: err.message})
@@ -71,7 +87,11 @@ export default class usuarioController{
         try{
             const idUsuario: number = Number(req.params.id)
 
-            const user = await Usuario.findByPk(idUsuario)
+            const user = await Usuario.findByPk(idUsuario, {
+                include: {
+                    model: Setor
+                }
+            })
 
             return res.status(200).json(user)
 
@@ -87,15 +107,25 @@ export default class usuarioController{
             const email: string = req.body.email
             const login: string = req.body.login
             const password: string = req.body.password
+            const cargo: string = req.body.cargo
+
+            let data: Data = {
+                username: username,
+                email: email,
+                login: login,
+                cargo: cargo
+            }
+            if(password){
+                const passwordHash: any = await PasswordCrypt.encrypt(password)
+                data = {
+                    ...data,
+                    password: passwordHash.success && passwordHash.hash,
+                }
+            }
 
             let user: UsuarioAttributes | unknown
             try{
-                user = await Usuario.update({
-                    username: username,
-                    email: email,
-                    login: login,
-                    password: password
-                }, {
+                user = await Usuario.update(data, {
                     where: {idUsuario: Number(idUsuario)}
                 })
 
@@ -139,6 +169,7 @@ export default class usuarioController{
         try{
             const idEmpresa = req.body.idEmpresa
             const idAtividade = req.body.idAtividade
+            const idUsuario = req.body.idUsuario
 
             const atividade = await EmpresaAtividade.findOne({where: {
                 EmpresaidEmpresa: idEmpresa,
@@ -149,7 +180,8 @@ export default class usuarioController{
                 return res.status(404).json({error: 'A Empresa não realiza esta atividade.'})
 
             const updateAtividade = await atividade?.update({
-                dataRealizacao: new Date()
+                dataRealizacao: new Date(),
+                idUsuario: idUsuario
             })
 
             return res.status(200).json({message: 'Atividade finalizada com sucesso.', updateAtividade})
@@ -186,7 +218,10 @@ export default class usuarioController{
             const login: string = req.body.login
             const password: string = req.body.password
 
-            const user: any = await Usuario.findOne({where: {login: login}})
+            const user: any = await Usuario.scope('withPassword').findOne({
+                where: {login: login},
+                include: Setor
+            })
             if(!user)
                 return res.status(404).json({message: 'Usuário não encontrado.'})
             const passwordVerify = await PasswordCrypt.compare(password, user.password)
