@@ -9,6 +9,7 @@ import Competencia, { CompetenciaAttributes } from "../schemas/CompetenciaSchema
 import Setor from "../schemas/SetorSchema";
 import EmpresaAtividade, { EmpresaAtividadeAttributes } from "../schemas/EmpresaAtividadeSchema";
 import { Json } from "sequelize/types/utils";
+import SetorEmpresa from "../schemas/SetorEmpresaSchema";
 
 interface whereCondition{
     nameEmpresa: string
@@ -28,7 +29,6 @@ export default class empresaController{
     static async createEmpresa(req: Request, res: Response){
         try{
             const nameEmpresa: string = req.body.name
-            const activeEmpresa: boolean = req.body.active
             const codigoQuestor: number = req.body.codigoQuestor
             const cnpjEmpresa: string = req.body.cnpjEmpresa
             const inscricaoEmpresa: string = req.body.inscricaoEmpresa
@@ -38,7 +38,7 @@ export default class empresaController{
             try{
                 const newEmpresa = await Empresa.create({
                     nameEmpresa: nameEmpresa,
-                    activeEmpresa: activeEmpresa,
+                    activeEmpresa: true,
                     codigoQuestor: codigoQuestor,
                     cnpjEmpresa: cnpjEmpresa,
                     inscricaoEmpresa: inscricaoEmpresa,
@@ -50,33 +50,12 @@ export default class empresaController{
                     }
                 })
 
-                const actualDate = new Date()
-
-                const regimeAtividades = await Regime.findByPk(idRegime, {
-                    include: {
-                        model: Obrigacao,
-                        through: {attributes: []},
-                        include: [{
-                            model: Competencia,
-                            where: {
-                                mes: {[Op.gte]: actualDate.getMonth()+1},
-                                ano: {[Op.gte]: actualDate.getFullYear()}
-                            }
-                        }]
-                    }
+                await SetorEmpresa.create({
+                    idSetor: 4,
+                    idEmpresa: newEmpresa.dataValues.idEmpresa
                 })
 
-                for(const obrigacao of regimeAtividades?.dataValues.Obrigacaos){
-                    for(const competencia of obrigacao.Competencias){
-                        const atividade = await EmpresaAtividade.create({
-                            idObrigacao: obrigacao.idObrigacao,
-                            EmpresaIdEmpresa: newEmpresa.dataValues.idEmpresa,
-                            AtividadeIdAtividade: competencia.Atividades.idAtividade
-                        })
-                    }
-                }
-                
-                return res.status(201).json({message: 'Registro inserido com sucesso.', regimeAtividades})
+                return res.status(201).json({message: 'Registro inserido com sucesso.'})
             }catch(err: any){
                 return res.status(400).json({
                     message: 'Não foi possível inserir o registro no banco, verifique os dados fornecidos.',
@@ -94,8 +73,10 @@ export default class empresaController{
             const mes = Number(req.query.mes)
             const ano = Number(req.query.ano)
             const idUsuario = Number(req.query.user)
+            const idSetor = Number(req.query.setor)
             const user: any = await Usuario.findByPk(idUsuario)
 
+            const actualDate = new Date()
             let whereCondition = {}
             let setorWhereCondition = {}
 
@@ -106,8 +87,10 @@ export default class empresaController{
             else
                 userFilter = undefined
             
-            if(user.cargo !== 'admin')
+            if(!idSetor)
                 setorWhereCondition = {idSetor: user.idSetor}
+            else
+                setorWhereCondition = {idSetor: idSetor}
 
             if(filter !== 'all')
                 whereCondition = {idRegime: Number(filter)}
@@ -116,7 +99,6 @@ export default class empresaController{
                 whereCondition = {...whereCondition, 
                 nameEmpresa: {[Op.substring]: nameEmpresa}
             }
-            console.log(userFilter)
 
             const empresas = await Empresa.findAll({where: whereCondition,
                 include: [
@@ -152,7 +134,11 @@ export default class empresaController{
                                     ano: ano
                                 }
                             },
-                            Obrigacao
+                            {
+                                model: Obrigacao,
+                                paranoid: 
+                                (actualDate.getMonth()+1 > mes || actualDate.getFullYear() > ano)
+                            }
                         ],
                     }
                 ]
@@ -265,10 +251,23 @@ export default class empresaController{
     }
     static async getAllEmpresa(req: Request, res: Response){
         try{
+            const search = req.query.search
+            const filter = req.query.filter
+            var whereCondition = {}
+
+            if(filter !== 'all')
+                whereCondition = {
+                    idRegime: Number(filter)
+                }
+
             const empresas = await Empresa.findAll({
+                where: {
+                    nameEmpresa: {[Op.like]: `%${search}%`}
+                },
                 include: [
                     {
-                        model: Regime
+                        model: Regime,
+                        where: whereCondition
                     },
                     {
                         model: Setor,
@@ -285,7 +284,7 @@ export default class empresaController{
     }
     static async lockEmpresa(req: Request, res: Response){
         try{
-            if(res.user.Setor.setorName !== 'Financeiro')
+            if(res.user.Setor?.setorName !== 'Financeiro' && res.user.cargo !== 'admin')
                 return res.status(401).json({message: 'Acesso negado. Somente o setor financeiro pode bloquear ou desbloquear empresas.'})
 
             const idEmpresa = req.params.id
@@ -318,7 +317,7 @@ export default class empresaController{
     }
     static async unlockEmpresa(req: Request, res: Response){
         try{
-            if(res.user.Setor.setorName !== 'Financeiro')
+            if(res.user.Setor.setorName !== 'Financeiro' && res.user.cargo !== 'admin')
                 return res.status(401).json({message: 'Acesso negado. Somente o setor financeiro pode bloquear ou desbloquear empresas.'})
 
             const idEmpresa = req.params.id

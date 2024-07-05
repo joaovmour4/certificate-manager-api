@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import RegimeObrigacao from "../schemas/RegimeObrigacaoSchema";
 
 export default class RegimeObrigacaoController{
-    // Atribuindo empresa à um usuário
     static async associateObrigacao(req: Request, res: Response){
         try{
             const idObrigacao: number = req.body.idObrigacao
@@ -22,7 +21,6 @@ export default class RegimeObrigacaoController{
             return res.status(500).json({error: err.message})
         }
     }
-    // Removendo atribuição de Obrigacao à um usuário
     static async removeAssociationObrigacao(req: Request, res: Response){
         try{
             const idObrigacao: number = req.body.idObrigacao

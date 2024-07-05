@@ -1,5 +1,11 @@
 import { Response, Request } from "express"
 import SetorEmpresa from "../schemas/SetorEmpresaSchema"
+import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema"
+import Regime from "../schemas/RegimeSchema"
+import Obrigacao from "../schemas/ObrigacaoSchema"
+import Competencia from "../schemas/CompetenciaSchema"
+import { Op } from "sequelize"
+import Empresa from "../schemas/EmpresaSchema"
 
 
 export default class setorEmpresaController{
@@ -25,6 +31,42 @@ export default class setorEmpresaController{
 
             if(!setorEmpresa)
                 return res.status(400).json({message: 'Verifique os dados informados.'})
+
+            const actualDate = new Date()
+
+            const empresa = await Empresa.findByPk(idEmpresa)
+
+            const regimeAtividades = await Regime.findByPk(empresa?.dataValues.idRegime, {
+                include: {
+                    model: Obrigacao,
+                    through: {attributes: []},
+                    include: [{
+                        model: Competencia,
+                        where: {
+                            mes: {[Op.gte]: actualDate.getMonth()+1},
+                            ano: {[Op.gte]: actualDate.getFullYear()}
+                        }
+                    }]
+                }
+            })
+
+            for(const obrigacao of regimeAtividades?.dataValues.Obrigacaos){
+                for(const competencia of obrigacao.Competencias){
+                    await EmpresaAtividade.findOrCreate({
+                        where:{
+                            idObrigacao: obrigacao.idObrigacao,
+                            EmpresaIdEmpresa: idEmpresa,
+                            AtividadeIdAtividade: competencia.Atividades.idAtividade
+                        },
+                        defaults:{
+                            idObrigacao: obrigacao.idObrigacao,
+                            EmpresaIdEmpresa: idEmpresa,
+                            AtividadeIdAtividade: competencia.Atividades.idAtividade
+                        }
+                    })
+                }
+            }
+
             return res.status(201).json({message: 'Empresa/Setor anexados com sucesso.'})
         }catch(err: any){
             return res.status(500).json({message: err.message})
@@ -36,7 +78,7 @@ export default class setorEmpresaController{
             const idEmpresa: number = req.body.idEmpresa
 
             if(res.user.cargo !== 'admin' && res.user.idSetor !== idSetor)
-                return res.status(401).json({message: 'Somente usuários do próprio setor podem alterar suas atribuições.'})
+                return res.status(401).json({message: 'Somente usuários do próprio setor ou Administradores podem alterar suas atribuições.'})
             
             const deleteAtribuicao = await SetorEmpresa.destroy({where:{
                 idSetor: idSetor,

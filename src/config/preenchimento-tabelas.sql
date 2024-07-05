@@ -1,14 +1,14 @@
 INSERT INTO Setor (setorName) VALUES ("Fiscal"), ("Contábil"), ("Pessoal"), ("Financeiro");
 INSERT INTO Usuario (username, login, email, password, idSetor, cargo, createdAt, updatedAt) VALUES 
-("Adriele", "adriele", "adriele@mg.com", "$2b$10$4VxoMtEmsPbIu.35x0wmfeu.9RmPBoTxDcQmuFI0q/cFGdVNEUAfu", 1, "supervisor", "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"),
-("João Vitor", "joaovmoura", "joao@mg.com", "$2b$10$4VxoMtEmsPbIu.35x0wmfeu.9RmPBoTxDcQmuFI0q/cFGdVNEUAfu", 2, "admin", "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"),
-("Thaynara", "thaynara", "thaynara@mg.com", "$2b$10$4VxoMtEmsPbIu.35x0wmfeu.9RmPBoTxDcQmuFI0q/cFGdVNEUAfu", 4, "supervisor", "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000");
+("Adriele", "adriele", "adriele@mg.com", "$2b$10$8..IwX47WYrexxSUyhd.F.mfWQUc3/7ATfdE51BVt1M1CfBihxPli", 1, "supervisor", "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"),
+("João Vitor", "joaovmoura", "joao@mg.com", "$2b$10$8..IwX47WYrexxSUyhd.F.mfWQUc3/7ATfdE51BVt1M1CfBihxPli", NULL, "admin", "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"),
+("Thaynara", "thaynara", "thaynara@mg.com", "$2b$10$8..IwX47WYrexxSUyhd.F.mfWQUc3/7ATfdE51BVt1M1CfBihxPli", 4, "supervisor", "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000");
 INSERT INTO regime (regimeName) VALUES ("Simples"), ("Presumido"), ("Real");
-INSERT INTO Obrigacao (obrigacaoName, obrigacaoShortName) VALUES 
-("PGDAS", "pgdas"), ("DIEF", "dief"), ("DAE", "dae"), ("SPED FISCAL", "sped"), ("EFD REINF", "reinf"), ("ISSQN", "issqn"), ("ISSQN1", "issqn1"), ("ICMS Normal", "icms"), ("ISSQN2", "issqn2");
+INSERT INTO Obrigacao (obrigacaoName, obrigacaoShortName, idSetor, createdAt, updatedAt) VALUES 
+("PGDAS", "pgdas", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("ICMS NORMAL", "icms", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("DIEF", "dief", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("SPED FISCAL", "sped", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("EFD REINF", "reinf", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("ISSQN", "issqn", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("DAS", "das", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("DEFIS", "defis", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000"), ("EFD PIS/COFINS", "pis/cofins", 1, "1000-01-01 00:00:00.000000", "1000-01-01 00:00:00.000000");
 INSERT INTO RegimeObrigacao (RegimeIdRegime, ObrigacaoIdObrigacao) VALUES 
 (1, 1), (3, 2), (2, 3), (2, 5), (2, 6), (3, 4), (3, 7), (3, 8), (3, 9);
-INSERT INTO competencia (mes, ano) VALUES (5, 2024), (6, 2024);
+INSERT INTO competencia (mes, ano) VALUES (6, 2024), (7, 2024);
 INSERT INTO atividade (idObrigacao, idCompetencia) VALUES 
 (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), 
 (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2), (8, 2), (9, 2);

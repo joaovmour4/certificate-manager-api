@@ -15,7 +15,8 @@ const Regime = sequelize.define('Regimes', {
     },
     regimeName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
 }, {
     tableName:'Regime',

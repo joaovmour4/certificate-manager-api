@@ -7,6 +7,7 @@ import userRoutes from './routes/userRoutes'
 import regimeRoutes from './routes/regimeRoutes'
 import empresaRoutes from './routes/empresaRoutes'
 import obrigacaoRoutes from './routes/obrigacaoRoutes'
+import atividadeRoutes from './routes/atividadeRoutes'
 import usuarioEmpresaRoutes from './routes/userEmpresaRoutes'
 import regimeObrigacaoRoutes from './routes/regimeObrigacaoRoutes'
 import competenciaRoutes from './routes/competenciaRoutes'
@@ -39,6 +40,7 @@ app.use('/',
     regimeRoutes, 
     empresaRoutes,
     obrigacaoRoutes,
+    atividadeRoutes,
     usuarioEmpresaRoutes,
     regimeObrigacaoRoutes,
     competenciaRoutes,

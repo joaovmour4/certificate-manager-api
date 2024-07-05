@@ -1,12 +1,12 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize";
-import Regime from "./RegimeSchema";
-import RegimeAtividade from "./RegimeObrigacaoSchema";
+import Setor from "./SetorSchema";
 
 interface ObrigacaoAttributes{
     idObrigacao: number
     obrigacaoName: string
     obrigacaoShortName: string
+    idSetor: number
 }
 
 const Obrigacao = sequelize.define('Obrigacaos', {
@@ -22,13 +22,25 @@ const Obrigacao = sequelize.define('Obrigacaos', {
     },
     obrigacaoShortName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
+    },
+    idSetor: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false,
+        references: {
+            model: Setor,
+            key: 'idSetor'
+        }
     }
 }, {
     tableName:'Obrigacao',
-    timestamps: false,
-    paranoid: false
+    timestamps: true,
+    paranoid: true,
 })
+
+Obrigacao.belongsTo(Setor, {foreignKey: 'idSetor'})
+Setor.hasMany(Obrigacao, {foreignKey: 'idSetor'})
 
 export { ObrigacaoAttributes }
 export default Obrigacao

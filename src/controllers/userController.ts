@@ -4,6 +4,7 @@ import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema"
 import auth from "../services/auth"
 import PasswordCrypt from "../services/passwordCrypt"
 import Setor from "../schemas/SetorSchema"
+import { Op } from "sequelize"
 
 interface User{
     idUsuario: number
@@ -67,10 +68,24 @@ export default class usuarioController{
     }
     static async getUsers(req: Request, res: Response){
         try{
+            const search = req.query.search
             var whereCondition = {}
+
+            whereCondition = {
+                username: {
+                    [Op.like]: `%${search}%`
+                }
+            }
+
             if(res.user.cargo !== 'admin')
                 whereCondition = {
+                    ...whereCondition,
                     idSetor: res.user.idSetor
+                }
+            else if(req.query.setor !== 'all')
+                whereCondition = {
+                    ...whereCondition,
+                    idSetor: Number(req.query.setor)
                 }
             const users = await Usuario.findAll({
                 where: whereCondition,

@@ -1,19 +1,34 @@
 import Atividade from "../schemas/AtividadeSchema";
 import { Request, Response } from "express";
+import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema";
 
 export default class AtividadeController{
     static async createAtividade(req: Request, res: Response){
         try{
             const idCompetencia = req.body.idCompetencia
-            const idAtividade = req.body.idAtividade
+            const idObrigacao = req.body.idObrigacao
+            const idEmpresa = req.body.idEmpresa
 
-            const atividade = await Atividade.create({
-                idCompetencia: idCompetencia,
-                idAtividade: idAtividade
+            const atividade = await Atividade.findOne({
+                where:{
+                    idObrigacao: idObrigacao,
+                    idCompetencia: idCompetencia   
+                }
             })
 
             if(!atividade)
-                return res.status(400).json({error: 'Não foi possível inserir o registro.'})
+                return res.status(400).json({message: 'Não foi possível inserir o registro.'})
+
+            await EmpresaAtividade.create({
+                idObrigacao: idObrigacao,
+                EmpresaIdEmpresa: idEmpresa,
+                AtividadeIdAtividade: atividade.dataValues.idAtividade
+            })
+            .catch(error=>{
+                return res.status(400).json({message: 'Não foi possível inserir o registro.', error})
+            })
+
+
             return res.status(201).json({message: 'Atividade criada com sucesso.', atividade})
         }catch(err: any){
             return res.status(500).json({message: err.message})
@@ -24,13 +39,6 @@ export default class AtividadeController{
             const atividades = await Atividade.findAll()
             return res.status(200).json(atividades)
 
-        }catch(err: any){
-            return res.status(500).json({error: err.message})
-        }
-    }
-    static async deleteAtividade(req: Request, res: Response){
-        try{
-            
         }catch(err: any){
             return res.status(500).json({error: err.message})
         }

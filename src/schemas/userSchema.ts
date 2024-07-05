@@ -37,7 +37,6 @@ const Usuario = sequelize.define('Usuarios', {
     password: {
         type: DataTypes.STRING,
         allowNull: false,
-
     },
     cargo: {
         type: DataTypes.ENUM,
@@ -54,7 +53,7 @@ const Usuario = sequelize.define('Usuarios', {
 }, {
     tableName: "Usuario",
     timestamps: true,
-    paranoid: false,
+    paranoid: true,
     defaultScope: {
         attributes: { exclude: ['password'] }
     },

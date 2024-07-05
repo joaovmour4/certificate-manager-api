@@ -15,7 +15,8 @@ const Setor = sequelize.define('Setor', {
     },
     setorName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
 }, {
     tableName:'Setor',
