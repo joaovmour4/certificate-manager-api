@@ -6,6 +6,8 @@ import Obrigacao from "../schemas/ObrigacaoSchema"
 import Competencia from "../schemas/CompetenciaSchema"
 import { Op } from "sequelize"
 import Empresa from "../schemas/EmpresaSchema"
+import Excecao, { ExcecaoAttributes } from "../schemas/ExcecaoSchema"
+import excecaoController from "./excecaoController"
 
 
 export default class setorEmpresaController{
@@ -20,7 +22,7 @@ export default class setorEmpresaController{
             }})
 
             if(res.user.cargo !== 'admin' && res.user.idSetor !== idSetor)
-                return res.status(401).json({message: 'Somente usuários do próprio setor podem alterar suas atribuições.'})
+                return res.status(403).json({message: 'Somente usuários do próprio setor podem alterar suas atribuições.'})
             if(verify.length)
                 return res.status(400).json({message: 'O registro já existe na base de dados.'})
 
@@ -40,18 +42,28 @@ export default class setorEmpresaController{
                 include: {
                     model: Obrigacao,
                     through: {attributes: []},
-                    include: [{
-                        model: Competencia,
-                        where: {
-                            mes: {[Op.gte]: actualDate.getMonth()+1},
-                            ano: {[Op.gte]: actualDate.getFullYear()}
+                    include: [
+                        {
+                            model: Competencia,
+                            where: {
+                                mes: {[Op.gte]: actualDate.getMonth()+1},
+                                ano: {[Op.gte]: actualDate.getFullYear()}
+                            }
+                        },
+                        {
+                            model: Excecao,
+                            through: {attributes: []}
                         }
-                    }]
+                    ]
                 }
             })
 
             for(const obrigacao of regimeAtividades?.dataValues.Obrigacaos){
                 for(const competencia of obrigacao.Competencias){
+                    const verifyExcecoes = await excecaoController.verifyExcecoes(obrigacao.idObrigacao, empresa?.dataValues.idEmpresa)
+                    if(verifyExcecoes)
+                        continue
+                    
                     await EmpresaAtividade.findOrCreate({
                         where:{
                             idObrigacao: obrigacao.idObrigacao,
@@ -78,7 +90,7 @@ export default class setorEmpresaController{
             const idEmpresa: number = req.body.idEmpresa
 
             if(res.user.cargo !== 'admin' && res.user.idSetor !== idSetor)
-                return res.status(401).json({message: 'Somente usuários do próprio setor ou Administradores podem alterar suas atribuições.'})
+                return res.status(403).json({message: 'Somente usuários do próprio setor ou Administradores podem alterar suas atribuições.'})
             
             const deleteAtribuicao = await SetorEmpresa.destroy({where:{
                 idSetor: idSetor,

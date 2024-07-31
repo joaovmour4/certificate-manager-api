@@ -1,5 +1,4 @@
-import express, { Application, Request, Response } from 'express'
-import { JwtPayload } from 'jsonwebtoken'
+import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import certificateRoutes from './routes/certificateRoutes'
 import emailRoutes from './routes/emailRoutes'
@@ -15,10 +14,14 @@ import competenciaAtividadeRoutes from './routes/competenciaAtividadeRoutes'
 import EmpresaAtividadeRoutes from './routes/empresaAtividadeRoutes'
 import SetorRoutes from './routes/setorRoutes'
 import SetorEmpresaRoutes from './routes/setorEmpresaRoutes'
+import ExcecaoRoutes from './routes/excecaoRoutes'
 import helmet from 'helmet'
 import path from 'path'
+import cron from 'node-cron'
 
 import dbInit from './config/dbInit'
+import Agendamentos from './services/agendamentoMensal'
+import { logError } from './services/logs'
 
 const pki = require('node-forge').pki
 const cors = require('cors')
@@ -47,30 +50,28 @@ app.use('/',
     competenciaAtividadeRoutes,
     EmpresaAtividadeRoutes,
     SetorEmpresaRoutes,
-    SetorRoutes
+    SetorRoutes,
+    ExcecaoRoutes
 )
-// Ping de autenticação
-app.get('/pingAuth', (req: Request, res: Response) => {
-    try{
-        if(req.headers['authorization']){
-            const token = req.headers['authorization'].split(' ')[1]
-            jwt.verify(token, process.env.JWT_SECRET, (err: Error, decoded: JwtPayload)=>{
-                if(err)
-                    return res.status(401).json({auth: false, message: 'Token expirado, realize o login novamente.'})
-
-                return res.status(200).json({auth: true, decoded})
-            })
-
-        }else{
-            return res.status(401).json({auth: false, message: 'Nenhum token de autenticação fornecido.'})
-        }
-    }catch(err: any){
-        return res.status(500).json({auth: false, error: err.message})
-    }
-})
 
 app.get('*', async (req, res)=>{
     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
+})
+
+app.use(logError)
+// correto: 0 2 1 * *
+cron.schedule('*/3 * * * *', () => { // Agenda a tarefa para ser executada todo dia 1 de cada mês às 2 horas da manhã
+    console.log('Executando tarefa agendada: criação de competências mensais')
+    Agendamentos.createCompetenciasMensais()
+    .then(result => {
+        console.log(result)
+    })
+    Agendamentos.setActiveMensal()
+    .then(result => {
+        console.log(result)
+    })
+}, {
+    timezone: "America/Sao_Paulo"
 })
 
 // Connecting with DB and running the App

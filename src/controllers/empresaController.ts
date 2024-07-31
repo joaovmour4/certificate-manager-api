@@ -7,8 +7,6 @@ import Atividade from "../schemas/AtividadeSchema";
 import Obrigacao from "../schemas/ObrigacaoSchema";
 import Competencia, { CompetenciaAttributes } from "../schemas/CompetenciaSchema";
 import Setor from "../schemas/SetorSchema";
-import EmpresaAtividade, { EmpresaAtividadeAttributes } from "../schemas/EmpresaAtividadeSchema";
-import { Json } from "sequelize/types/utils";
 import SetorEmpresa from "../schemas/SetorEmpresaSchema";
 
 interface whereCondition{
@@ -32,6 +30,7 @@ export default class empresaController{
             const codigoQuestor: number = req.body.codigoQuestor
             const cnpjEmpresa: string = req.body.cnpjEmpresa
             const inscricaoEmpresa: string = req.body.inscricaoEmpresa
+            const situacaoIE: string = req.body.situacaoIE
             const representante: string = req.body.representante
             const idRegime: number = req.body.idRegime
 
@@ -41,7 +40,8 @@ export default class empresaController{
                     activeEmpresa: true,
                     codigoQuestor: codigoQuestor,
                     cnpjEmpresa: cnpjEmpresa,
-                    inscricaoEmpresa: inscricaoEmpresa,
+                    inscricaoEmpresa: inscricaoEmpresa.length ? inscricaoEmpresa : null,
+                    situacaoIE: situacaoIE,
                     representante: representante,
                     idRegime: idRegime,
                     situacaoFinanceiro: {
@@ -74,6 +74,8 @@ export default class empresaController{
             const ano = Number(req.query.ano)
             const idUsuario = Number(req.query.user)
             const idSetor = Number(req.query.setor)
+            const orderField = String(req.query.of) // Campo que receberá ordenação
+            const order = req.query.o === 'true' ? 'ASC' : 'DESC' // Ordenação crescente ou decrescente, boolean
             const user: any = await Usuario.findByPk(idUsuario)
 
             const actualDate = new Date()
@@ -141,6 +143,9 @@ export default class empresaController{
                             }
                         ],
                     }
+                ],
+                order: [
+                    orderField === 'regimeName' ? [Regime, orderField, order] : [orderField, order]
                 ]
             })
 
@@ -160,7 +165,8 @@ export default class empresaController{
                 nameEmpresa: req.body.nameEmpresa,
                 codigoQuestor: req.body.codigoQuestor,
                 cnpjEmpresa: req.body.cnpjEmpresa,
-                inscricaoEmpresa: req.body.inscricaoEmpresa,
+                inscricaoEmpresa: req.body.inscricaoEmpresa.length ? req.body.inscricaoEmpresa : null,
+                situacaoIE: req.body.situacaoIE,
                 representante: req.body.representante,
                 idRegime: req.body.idRegime
             }
@@ -170,7 +176,7 @@ export default class empresaController{
             }})
 
             if(!updateEmpresa)
-                return res.status(400)
+                return res.status(400).json({message: 'Não foi possível alterar os dados da empresa.'})
             return res.status(200).json({message: 'Dados da empresa atualizados com sucesso.'})
 
         }catch(err: unknown){
@@ -253,6 +259,8 @@ export default class empresaController{
         try{
             const search = req.query.search
             const filter = req.query.filter
+            const orderField = String(req.query.of) // Campo que será ordenado
+            const order = req.query.o === 'true' ? 'ASC' : 'DESC' // Ordenação ascending ou descending
             var whereCondition = {}
 
             if(filter !== 'all')
@@ -273,6 +281,9 @@ export default class empresaController{
                         model: Setor,
                         through: {attributes: []}
                     }
+                ],
+                order: [
+                    orderField === 'regimeName' ? [Regime, orderField, order] : [orderField, order]
                 ]
             })
 
@@ -285,7 +296,7 @@ export default class empresaController{
     static async lockEmpresa(req: Request, res: Response){
         try{
             if(res.user.Setor?.setorName !== 'Financeiro' && res.user.cargo !== 'admin')
-                return res.status(401).json({message: 'Acesso negado. Somente o setor financeiro pode bloquear ou desbloquear empresas.'})
+                return res.status(403).json({message: 'Acesso negado. Somente o setor financeiro pode bloquear ou desbloquear empresas.'})
 
             const idEmpresa = req.params.id
 
@@ -318,7 +329,7 @@ export default class empresaController{
     static async unlockEmpresa(req: Request, res: Response){
         try{
             if(res.user.Setor.setorName !== 'Financeiro' && res.user.cargo !== 'admin')
-                return res.status(401).json({message: 'Acesso negado. Somente o setor financeiro pode bloquear ou desbloquear empresas.'})
+                return res.status(403).json({message: 'Acesso negado. Somente o setor financeiro pode bloquear ou desbloquear empresas.'})
 
             const idEmpresa = req.params.id
 

@@ -1,6 +1,9 @@
 # .js files
 build*/
 
+# .exe build files
+*.exe
+
 # dependency files
 /node_modules 
 

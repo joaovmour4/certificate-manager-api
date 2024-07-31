@@ -1,10 +1,11 @@
 import Router from 'express'
 import setorController from '../controllers/setorController'
+import verifyAuth from '../services/verifyAuth'
 
 const router = Router()
 
-router.post('/setor', setorController.createSetor)
-router.get('/setor', setorController.getSetores)
+router.post('/setor', verifyAuth.verifyAdmin, setorController.createSetor)
+router.get('/setor', verifyAuth.verifyAuth, setorController.getSetores)
 
 
 export default router

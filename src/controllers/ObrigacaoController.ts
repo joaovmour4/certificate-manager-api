@@ -47,7 +47,8 @@ export default class ObrigacaoController{
 
             const actualDate = new Date()
 
-            const competencias = await Competencia.findAll({where: {
+            const competencias = await Competencia.findAll({
+                where: {
                     mes: {[Op.gte]: actualDate.getMonth()+1},
                     ano: {[Op.gte]: actualDate.getFullYear()}
                 }})

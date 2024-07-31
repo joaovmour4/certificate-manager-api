@@ -1,10 +1,15 @@
-import { Response, Request } from "express"
+import { Response, Request, NextFunction } from "express"
 import Usuario, { UsuarioAttributes } from "../schemas/userSchema"
 import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema"
 import auth from "../services/auth"
 import PasswordCrypt from "../services/passwordCrypt"
 import Setor from "../schemas/SetorSchema"
 import { Op } from "sequelize"
+import { logAtividade } from "../services/logs"
+import Obrigacao from "../schemas/ObrigacaoSchema"
+import Competencia from "../schemas/CompetenciaSchema"
+import Empresa from "../schemas/EmpresaSchema"
+import Atividade from "../schemas/AtividadeSchema"
 
 interface User{
     idUsuario: number
@@ -198,7 +203,12 @@ export default class usuarioController{
                 dataRealizacao: new Date(),
                 idUsuario: idUsuario
             })
-
+            const obrigacao = await Obrigacao.findByPk(atividade.dataValues.idObrigacao)
+            const findAtividade = await Atividade.findByPk(idAtividade)
+            const competencia = await Competencia.findByPk(findAtividade?.dataValues.idCompetencia)
+            const empresa = await Empresa.findByPk(idEmpresa)
+            await logAtividade(res.user.username, true, obrigacao?.dataValues.obrigacaoName, `${competencia?.dataValues.mes}/${competencia?.dataValues.ano}`, empresa?.dataValues.nameEmpresa)
+            
             return res.status(200).json({message: 'Atividade finalizada com sucesso.', updateAtividade})
         }catch(err: any){
             return res.status(500).json({error: err.mesage})
@@ -221,6 +231,12 @@ export default class usuarioController{
                 dataRealizacao: null
             })
 
+            const obrigacao = await Obrigacao.findByPk(atividade.dataValues.idObrigacao)
+            const findAtividade = await Atividade.findByPk(idAtividade)
+            const competencia = await Competencia.findByPk(findAtividade?.dataValues.idCompetencia)
+            const empresa = await Empresa.findByPk(idEmpresa)
+            await logAtividade(res.user.username, false, obrigacao?.dataValues.obrigacaoName, `${competencia?.dataValues.mes}/${competencia?.dataValues.ano}`, empresa?.dataValues.nameEmpresa)
+
             return res.status(200).json({message: 'Atividade movida com sucesso para pendentes.', updateAtividade})
         }catch(err: any){
             return res.status(500).json({error: err.mesage})
@@ -228,7 +244,7 @@ export default class usuarioController{
     }
 
     // Autenticação
-    static async login(req: Request, res: Response){
+    static async login(req: Request, res: Response, next: NextFunction){
         try{
             const login: string = req.body.login
             const password: string = req.body.password
@@ -253,7 +269,8 @@ export default class usuarioController{
                 authentication
             })
         }catch(err: any){
-            return res.status(500).json({error: err.mesage})
+            next(err)
+            // return res.status(500).json({error: err.mesage})
         }
     }
 }

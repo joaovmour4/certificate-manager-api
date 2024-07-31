@@ -35,7 +35,7 @@ class Auth{
                     if(res.user.cargo === 'admin')
                         next()
                     else
-                        return res.status(401).json({message: 'A Função solicitada é reservada para Administradores.'})
+                        return res.status(403).json({message: 'A Função solicitada é reservada para Administradores.'})
                 })
     
             }else{
@@ -57,7 +57,7 @@ class Auth{
                     if(res.user.cargo === 'admin' || res.user.cargo === 'supervisor')
                         next()
                     else
-                        return res.status(401).json({message: 'A Função solicitada é reservada para Administradores ou Supervisores.'})
+                        return res.status(403).json({message: 'A Função solicitada é reservada para Administradores ou Supervisores.'})
                 })
     
             }else{

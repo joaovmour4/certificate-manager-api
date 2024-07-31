@@ -103,7 +103,7 @@ export default class certificateController{
 
             const owner = cert.subject.attributes.find((attr: any) => attr.shortName === 'CN')
             if(certificate.docOwner !== owner.value.split(':')[1])
-                return res.status(401).json({message: 'O certificado informado não pertence ao registro informado.'})
+                return res.status(403).json({message: 'O certificado informado não pertence ao registro informado.'})
 
             const newCertificate = await Certificate.findByIdAndUpdate(certificate._id, {
                 owner: owner.value.split(':')[0],

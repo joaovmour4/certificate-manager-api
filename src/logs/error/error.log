@@ -1,0 +1,389 @@
+[2024-07-12T15:15:32.618Z] - Error: data and hash must be strings
+    at Object.compare (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\bcrypt.js:215:17)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\bcrypt.js:204:25)
+    at Function.<anonymous> (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:16:37)
+    at Generator.next (<anonymous>)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:4:12)
+[2024-07-12T15:19:00.456Z] - Error: data and hash must be strings
+    at Object.compare (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\bcrypt.js:215:17)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\bcrypt.js:204:25)
+    at Function.<anonymous> (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:16:37)
+    at Generator.next (<anonymous>)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:4:12)
+[2024-07-12T15:19:10.023Z] - Error: data and hash must be strings
+    at Object.compare (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\bcrypt.js:215:17)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\promises.js:29:12
+    at new Promise (<anonymous>)
+    at Object.module.exports.promise (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\promises.js:20:12)
+    at Object.compare (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\bcrypt\bcrypt.js:204:25)
+    at Function.<anonymous> (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:16:37)
+    at Generator.next (<anonymous>)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\passwordCrypt.ts:4:12)
+[2024-07-19T13:30:59.354Z] - SequelizeQueryError: Attempted a SELECT query for model 'Excecoes' as `Excecoes` without selecting any columns
+    at MySQLQueryGenerator._throwOnEmptyAttributes (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-generator.js:2262:11)
+    at MySQLQueryGenerator.selectFromTableFragment (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-generator.js:2266:10)
+    at MySQLQueryGenerator.selectQuery (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-generator.js:1452:34)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1002:27)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:1824:47)
+[2024-07-19T14:04:45.157Z] - SequelizeEagerLoadingError: ObrigacaoExcecao is not associated to Excecoes!
+    at Function._getIncludedAssociation (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:742:13)
+    at Function._validateIncludedElement (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:646:53)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:542:37
+    at Array.map (<anonymous>)
+    at Function._validateIncludedElements (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:537:39)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:1794:12)
+[2024-07-19T14:05:26.217Z] - SequelizeEagerLoadingError: ObrigacaoExcecao is not associated to Excecoes!
+    at Function._getIncludedAssociation (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:742:13)
+    at Function._validateIncludedElement (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:646:53)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:542:37
+    at Array.map (<anonymous>)
+    at Function._validateIncludedElements (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:537:39)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:1794:12)
+[2024-07-22T13:41:30.921Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:41:31.782Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:41:31.960Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:42:36.629Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:42:41.127Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:42:41.702Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:42:41.851Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:42:42.011Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:42:42.144Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:42:42.571Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:43:18.737Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:44:28.566Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:55:22.493Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:55:47.039Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:57:46.744Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:59:02.601Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T13:59:19.669Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:00:58.938Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:01:29.858Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:16.111Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:17.471Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:37.435Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:38.339Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:38.655Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:55.056Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:55.613Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:55.951Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:56.151Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:02:56.406Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:03:55.165Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:06:36.042Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:06:37.359Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:06:37.808Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:06:54.474Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:06:55.157Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:06:55.743Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:13:10.350Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:13:54.052Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:14:01.285Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:14:37.221Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:14:44.259Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-07-22T14:17:44.129Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.insert (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:795:21)
+    at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
+    at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
+    at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)

@@ -1,9 +1,10 @@
 import Router from 'express'
 import atividadeController from '../controllers/atividadeController'
+import verifyAuth from '../services/verifyAuth'
 
 const router = Router()
 
-router.post('/competenciaAtividade', atividadeController.createAtividade)
-router.get('/competenciaAtividade', atividadeController.getAtividades)
+router.post('/competenciaAtividade', verifyAuth.verifyAuth, atividadeController.createAtividade)
+router.get('/competenciaAtividade', verifyAuth.verifyAuth, atividadeController.getAtividades)
 
 export default router
