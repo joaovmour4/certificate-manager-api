@@ -6,8 +6,8 @@ const env = process.env.ENVIRONMENT === 'DEV' // true or false
 
 const dbInit = async () =>{
     await sequelize.sync({
-        alter: true,
-        force: env
+        alter: env,
+        force: false
     })
     if(env){
         const sql = fs.readFileSync('C:\\Users\\Cliente\\Documents\\JS\\certificate-manager-api\\src\\config\\preenchimento-tabelas.sql', 'utf-8')

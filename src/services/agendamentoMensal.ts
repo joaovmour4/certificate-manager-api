@@ -10,7 +10,7 @@ import excecaoController from "../controllers/excecaoController"
 export default class Agendamentos{
     static async createCompetenciasMensais(){
         try{
-            const mes = new Date().getMonth()+2 //////////////////
+            const mes = new Date().getMonth()+1 //////////////////
             const ano = new Date().getFullYear()
 
             const find = await Competencia.findOne({where: {
@@ -20,7 +20,7 @@ export default class Agendamentos{
             if(find)
                 return {status: false, log: 'A competência já existe.'}
 
-            const competencia: any = await Competencia.create({
+            const competencia = await Competencia.create({
                 mes: mes,
                 ano: ano
             })
@@ -37,9 +37,9 @@ export default class Agendamentos{
 
             const activities = []
             for(const obrigacao of obrigacoes){
-                const atividade: Model<AtividadeAttributes> = await Atividade.create({
+                const atividade = await Atividade.create({
                     idObrigacao: obrigacao.dataValues.idObrigacao,
-                    idCompetencia: competencia.idCompetencia
+                    idCompetencia: competencia.dataValues.idCompetencia
                 })
                 activities.push(atividade)
             }

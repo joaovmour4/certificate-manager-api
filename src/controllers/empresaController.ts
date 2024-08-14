@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { Op, Model, where } from "sequelize";
 import Empresa, { EmpresaAttributes } from "../schemas/EmpresaSchema";
 import Regime from "../schemas/RegimeSchema";
@@ -66,7 +66,7 @@ export default class empresaController{
             return res.status(500).json({error: err.message})
         }
     }
-    static async getEmpresas(req: Request, res: Response){
+    static async getEmpresas(req: Request, res: Response, next: NextFunction){
         try{
             const filter = req.params.filter
             const nameEmpresa = req.query.nameEmpresa
@@ -151,11 +151,11 @@ export default class empresaController{
 
             return res.status(200).json({empresas})
 
-        }catch(err: any){
-            return res.status(500).json({error: err.message})
+        }catch(err){
+            next(err)
         }
     }
-    static async updateEmpresa(req: Request, res: Response){
+    static async updateEmpresa(req: Request, res: Response, next: NextFunction){
         try{
             const idEmpresa: number = Number(req.params.id)
             if(!idEmpresa)
@@ -165,7 +165,7 @@ export default class empresaController{
                 nameEmpresa: req.body.nameEmpresa,
                 codigoQuestor: req.body.codigoQuestor,
                 cnpjEmpresa: req.body.cnpjEmpresa,
-                inscricaoEmpresa: req.body.inscricaoEmpresa.length ? req.body.inscricaoEmpresa : null,
+                inscricaoEmpresa: req.body.inscricaoEmpresa?.length ? req.body.inscricaoEmpresa : null,
                 situacaoIE: req.body.situacaoIE,
                 representante: req.body.representante,
                 idRegime: req.body.idRegime
@@ -179,8 +179,8 @@ export default class empresaController{
                 return res.status(400).json({message: 'Não foi possível alterar os dados da empresa.'})
             return res.status(200).json({message: 'Dados da empresa atualizados com sucesso.'})
 
-        }catch(err: unknown){
-            return res.status(500).json({error: err})
+        }catch(err){
+            next(err)
         }
     }
     static async deleteEmpresa(req: Request, res: Response){
@@ -328,7 +328,7 @@ export default class empresaController{
     }
     static async unlockEmpresa(req: Request, res: Response){
         try{
-            if(res.user.Setor.setorName !== 'Financeiro' && res.user.cargo !== 'admin')
+            if(res.user.Setor?.setorName !== 'Financeiro' && res.user.cargo !== 'admin')
                 return res.status(403).json({message: 'Acesso negado. Somente o setor financeiro pode bloquear ou desbloquear empresas.'})
 
             const idEmpresa = req.params.id

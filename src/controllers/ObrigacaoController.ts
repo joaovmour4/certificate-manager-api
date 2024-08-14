@@ -7,6 +7,7 @@ import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema";
 import Regime from "../schemas/RegimeSchema";
 import Competencia from "../schemas/CompetenciaSchema";
 import Empresa from "../schemas/EmpresaSchema";
+import ObrigacaoExcecao from "../schemas/ObrigacaoExcecaoSchema";
 
 export default class ObrigacaoController{
     static async createObrigacao(req: Request, res: Response){
@@ -15,6 +16,7 @@ export default class ObrigacaoController{
             const obrigacaoShortName: string = req.body.shortName
             const idRegime: number = req.body.idRegime
             const idSetor: number = req.body.idSetor
+            const excecoes: Array<number> = JSON.parse(req.body.excecoes)
 
             if(!obrigacaoName)
                 return res.status(400).json({error: 'Informe o nome da Obrigacao.'})
@@ -26,8 +28,15 @@ export default class ObrigacaoController{
                 defaults:{
                     obrigacaoName: obrigacaoName,
                     obrigacaoShortName: obrigacaoShortName,
-                    idSetor: idSetor
+                    idSetor: idSetor,
             }})
+
+            for (const excecao of excecoes){
+                await ObrigacaoExcecao.create({
+                    idObrigacao: newObrigacao.dataValues.idObrigacao,
+                    idExcecao: excecao
+                })
+            }
 
             if(!created){
                 if(!newObrigacao.dataValues.deletedAt)
@@ -59,6 +68,12 @@ export default class ObrigacaoController{
                         idObrigacao: newObrigacao.dataValues.idObrigacao,
                         idCompetencia: competencia.dataValues.idCompetencia
                     })
+                    if(excecoes.includes(1)) // ANUAL
+                        console.log('ANUAL')
+                    if(excecoes.includes(2) && empresa.dataValues.situacaoIE === 'SERVICO') // SERVICO
+                        continue
+                    if(excecoes.includes(3) && !empresa.dataValues.inscricaoEmpresa) // SEM IE
+                        continue
                     await EmpresaAtividade.create({
                         idObrigacao: newObrigacao.dataValues.idObrigacao,
                         EmpresaIdEmpresa: empresa.dataValues.idEmpresa,

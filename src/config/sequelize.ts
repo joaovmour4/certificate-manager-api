@@ -1,9 +1,6 @@
 import { Sequelize } from 'sequelize'
-import Empresa from '../schemas/EmpresaSchema'
-import Regime from '../schemas/RegimeSchema'
-import Usuario from '../schemas/userSchema'
-// import dotenv from 'dotenv/config.js'
-const dotenv = require('dotenv').config()
+import { config } from 'dotenv'
+const dotenv = config()
 
 
 const dbName = process.env.SQL_DB_NAME as string

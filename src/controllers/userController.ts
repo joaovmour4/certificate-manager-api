@@ -270,7 +270,6 @@ export default class usuarioController{
             })
         }catch(err: any){
             next(err)
-            // return res.status(500).json({error: err.mesage})
         }
     }
 }

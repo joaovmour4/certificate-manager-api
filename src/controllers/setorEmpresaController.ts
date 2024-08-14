@@ -6,7 +6,7 @@ import Obrigacao from "../schemas/ObrigacaoSchema"
 import Competencia from "../schemas/CompetenciaSchema"
 import { Op } from "sequelize"
 import Empresa from "../schemas/EmpresaSchema"
-import Excecao, { ExcecaoAttributes } from "../schemas/ExcecaoSchema"
+import Excecao from "../schemas/ExcecaoSchema"
 import excecaoController from "./excecaoController"
 
 

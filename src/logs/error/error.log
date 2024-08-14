@@ -387,3 +387,59 @@
     at model.save (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:4154:35)
     at Function.create (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2305:12)
     at Function.findOrCreate (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:2417:25)
+[2024-08-01T12:56:21.506Z] - TypeError: Cannot read properties of null (reading 'length')
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:168:61
+    at Generator.next (<anonymous>)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:4:12)
+    at updateEmpresa (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:149:16)
+    at Layer.handle [as handle_request] (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\verifyAuth.ts:16:21
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\jsonwebtoken\verify.js:261:12
+[2024-08-01T12:59:02.414Z] - TypeError: Cannot read properties of null (reading 'length')
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:168:61
+    at Generator.next (<anonymous>)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:4:12)
+    at updateEmpresa (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:149:16)
+    at Layer.handle [as handle_request] (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\verifyAuth.ts:16:21
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\jsonwebtoken\verify.js:261:12
+[2024-08-01T12:59:19.061Z] - TypeError: Cannot read properties of null (reading 'length')
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:168:61
+    at Generator.next (<anonymous>)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:4:12)
+    at updateEmpresa (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:149:16)
+    at Layer.handle [as handle_request] (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\verifyAuth.ts:16:21
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\jsonwebtoken\verify.js:261:12
+[2024-08-01T13:12:26.276Z] - TypeError: Cannot read properties of null (reading 'length')
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:168:61
+    at Generator.next (<anonymous>)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:4:12)
+    at updateEmpresa (C:\Users\Cliente\Documents\JS\certificate-manager-api\src\controllers\empresaController.ts:149:16)
+    at Layer.handle [as handle_request] (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\express\lib\router\route.js:144:13)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\src\services\verifyAuth.ts:16:21
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\jsonwebtoken\verify.js:261:12
+[2024-08-01T13:19:24.297Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-08-01T13:19:53.813Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)

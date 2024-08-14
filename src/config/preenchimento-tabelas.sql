@@ -28,7 +28,7 @@ INSERT INTO obrigacaoexcecao (idObrigacao, idExcecao) VALUES
 (8, 1);
 INSERT INTO RegimeObrigacao (RegimeIdRegime, ObrigacaoIdObrigacao) VALUES 
 (1, 1), (3, 2), (2, 3), (2, 5), (2, 6), (3, 4), (3, 7), (3, 8), (3, 9);
-INSERT INTO competencia (mes, ano) VALUES (6, 2024), (7, 2024);
+INSERT INTO competencia (mes, ano) VALUES (7, 2024), (8, 2024);
 INSERT INTO atividade (idObrigacao, idCompetencia) VALUES 
 (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1), (9, 1), 
 (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2), (8, 2), (9, 2);

@@ -19,15 +19,13 @@ import helmet from 'helmet'
 import path from 'path'
 import cron from 'node-cron'
 
+import * as dotenvlib from 'dotenv'
+import cors from 'cors'
 import dbInit from './config/dbInit'
 import Agendamentos from './services/agendamentoMensal'
 import { logError } from './services/logs'
 
-const pki = require('node-forge').pki
-const cors = require('cors')
-const dotenv = require('dotenv').config()
-const jwt = require('jsonwebtoken')
-
+const dotenv = dotenvlib.config()
 // Basic App configs
 const app: Application = express()
 app.use(cors())
@@ -60,7 +58,8 @@ app.get('*', async (req, res)=>{
 
 app.use(logError)
 // correto: 0 2 1 * *
-cron.schedule('*/3 * * * *', () => { // Agenda a tarefa para ser executada todo dia 1 de cada mês às 2 horas da manhã
+// teste: */3 * * * *
+cron.schedule('0 2 1 * *', () => { // Agenda a tarefa para ser executada todo dia 1 de cada mês às 2 horas da manhã
     console.log('Executando tarefa agendada: criação de competências mensais')
     Agendamentos.createCompetenciasMensais()
     .then(result => {
@@ -72,6 +71,11 @@ cron.schedule('*/3 * * * *', () => { // Agenda a tarefa para ser executada todo 
     })
 }, {
     timezone: "America/Sao_Paulo"
+})
+
+Agendamentos.createCompetenciasMensais()
+.then(result => {
+    console.log(result)
 })
 
 // Connecting with DB and running the App
