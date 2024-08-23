@@ -31,7 +31,7 @@ const app: Application = express()
 app.use(cors())
 app.use(helmet({ contentSecurityPolicy: false, }))
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../build-front')));
+// app.use(express.static(path.join(__dirname, '../build-front')));
 
 // Defining routes
 app.use('/', 
@@ -52,9 +52,9 @@ app.use('/',
     ExcecaoRoutes
 )
 
-app.get('*', async (req, res)=>{
-    res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
-})
+// app.get('*', async (req, res)=>{
+//     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
+// })
 
 app.use(logError)
 // correto: 0 2 1 * *
@@ -87,8 +87,8 @@ async function main(){
 }
 main()
 .then(()=>{
-    app.listen(80, ()=>{
-        console.log('listening on port 80')
+    app.listen(3000, ()=>{
+        console.log('listening on port 3000')
     })
 })
 .catch((err)=>console.log(err))
