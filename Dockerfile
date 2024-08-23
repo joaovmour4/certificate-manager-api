@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Copiando o .env
-COPY .env ./build
+# COPY .env ./build
 
 # Exponha a porta
 EXPOSE 3000
