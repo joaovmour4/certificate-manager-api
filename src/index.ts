@@ -16,7 +16,6 @@ import SetorRoutes from './routes/setorRoutes'
 import SetorEmpresaRoutes from './routes/setorEmpresaRoutes'
 import ExcecaoRoutes from './routes/excecaoRoutes'
 import helmet from 'helmet'
-import path from 'path'
 import cron from 'node-cron'
 
 import * as dotenvlib from 'dotenv'
@@ -31,7 +30,6 @@ const app: Application = express()
 app.use(cors())
 app.use(helmet({ contentSecurityPolicy: false, }))
 app.use(express.json())
-// app.use(express.static(path.join(__dirname, '../build-front')));
 
 // Defining routes
 app.use('/', 
@@ -52,10 +50,6 @@ app.use('/',
     ExcecaoRoutes
 )
 
-// app.get('*', async (req, res)=>{
-//     res.sendFile(path.join(__dirname, '../build-front', 'index.html'));
-// })
-
 app.use(logError)
 // correto: 0 2 1 * *
 // teste: */3 * * * *
@@ -71,11 +65,6 @@ cron.schedule('0 2 1 * *', () => { // Agenda a tarefa para ser executada todo di
     })
 }, {
     timezone: "America/Sao_Paulo"
-})
-
-Agendamentos.createCompetenciasMensais()
-.then(result => {
-    console.log(result)
 })
 
 // Connecting with DB and running the App

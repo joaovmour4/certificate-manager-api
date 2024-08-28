@@ -46,7 +46,7 @@ export default class setorEmpresaController{
                         {
                             model: Competencia,
                             where: {
-                                mes: {[Op.gte]: actualDate.getMonth()+1},
+                                mes: {[Op.gte]: actualDate.getMonth()},
                                 ano: {[Op.gte]: actualDate.getFullYear()}
                             }
                         },
