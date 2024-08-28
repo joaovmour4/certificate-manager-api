@@ -10,6 +10,7 @@ interface EmpresaAttributes{
     activeEmpresa: boolean
     codigoQuestor: number
     cnpjEmpresa: string
+    inscricaoMunicipal: string
     inscricaoEmpresa: string
     representante: string
     idUsuarioResponsavel: number
