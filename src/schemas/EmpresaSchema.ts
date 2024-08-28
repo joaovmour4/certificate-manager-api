@@ -45,6 +45,11 @@ const Empresa = sequelize.define('Empresas', {
         allowNull: true,
         unique: true
     },
+    inscricaoMunicipal: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique: true
+    },
     situacaoIE: {
         type: DataTypes.STRING,
         allowNull: false
