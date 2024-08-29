@@ -84,7 +84,10 @@ export default class empresaController{
 
             let userFilter: {} | undefined = {}
 
-            if(user.cargo !== 'admin' && user.cargo !== 'supervisor'){
+            if(user.cargo !== 'admin'){
+                userFilter = {idUsuario: idUsuario}
+            }
+            else if(user.cargo !== 'supervisor'){
                 userFilter = {idUsuario: idUsuario}
                 setorWhereCondition = {idSetor: user.idSetor}
             }
