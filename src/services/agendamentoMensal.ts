@@ -123,36 +123,39 @@ export default class Agendamentos{
                 activities.push(atividade)
             }
 
+            const companyActivities = []
             for(const empresa of empresas){
                 for(const obrigacao of empresa.Regime.Obrigacaos){
                     const verifyExcecoes = await excecaoController.verifyExcecoes(obrigacao.idObrigacao, empresa.idEmpresa)
                     if(verifyExcecoes)
                         continue
-                    await EmpresaAtividade.findOrCreate({
-                        where: {
-                            idObrigacao: obrigacao.idObrigacao,
-                            EmpresaIdEmpresa: empresa.idEmpresa,
-                            AtividadeIdAtividade: activities.find((activity)=> 
-                                activity.dataValues.idObrigacao === obrigacao.idObrigacao
-                            )?.dataValues.idAtividade
-                        },
-                        defaults: {
-                            idObrigacao: obrigacao.idObrigacao,
-                            EmpresaIdEmpresa: empresa.idEmpresa,
-                            AtividadeIdAtividade: activities.find((activity)=> 
-                                activity.dataValues.idObrigacao === obrigacao.idObrigacao
-                            )?.dataValues.idAtividade
-                        }
-                    })
+                    companyActivities.push(
+                        await EmpresaAtividade.findOrCreate({
+                            where: {
+                                idObrigacao: obrigacao.idObrigacao,
+                                EmpresaIdEmpresa: empresa.idEmpresa,
+                                AtividadeIdAtividade: activities.find((activity)=> 
+                                    activity.dataValues.idObrigacao === obrigacao.idObrigacao
+                                )?.dataValues.idAtividade
+                            },
+                            defaults: {
+                                idObrigacao: obrigacao.idObrigacao,
+                                EmpresaIdEmpresa: empresa.idEmpresa,
+                                AtividadeIdAtividade: activities.find((activity)=> 
+                                    activity.dataValues.idObrigacao === obrigacao.idObrigacao
+                                )?.dataValues.idAtividade
+                            }
+                        })
+                    )
                 }
             }
 
-            if(!competencia)
-                return {status: false, log: 'Erro nos dados fornecidos.'}
-            return {status: true, log: 'Competência criada com sucesso.'}
+            if(!companyActivities.length)
+                return res.status(400).json({message: 'Erro nos dados fornecidos.'})
+            return res.status(201).json({message: 'Atividades criadas com sucesso.'})
        
         }catch(err: any){
-            return {status: false, log: err.message}
+            return res.status(500).json({message: 'Erro desconhecido.'})
         }
     }
     static async createCompetencia(req: Request, res: Response){
@@ -207,11 +210,11 @@ export default class Agendamentos{
             }
 
             if(!competencia)
-                return {status: false, log: 'Erro nos dados fornecidos.'}
-            return {status: true, log: 'Competência criada com sucesso.'}
+                return res.status(400).json({message: 'Erro nos dados fornecidos.'})
+            return res.status(201).json({message: 'Competência criada com sucesso.'})
        
         }catch(err: any){
-            return {status: false, log: err.message}
+            return res.status(500).json({message: 'Erro desconhecido.'})
         }
     }
 }
