@@ -9,7 +9,7 @@ router.post('/competenciaAtividade', verifyAuth.verifyAuth, atividadeController.
 router.get('/competenciaAtividade', verifyAuth.verifyAuth, atividadeController.getAtividades)
 
 // Rotas de criação externa
-router.post('/createCompetencia', verifyAuth.verifyAdmin, Agendamentos.createCompetencia)
-router.post('/createAtividades', verifyAuth.verifyAdmin, Agendamentos.createAtividades)
+router.post('/competenciaAtividade/createCompetencia', verifyAuth.verifyAdmin, Agendamentos.createCompetencia)
+router.post('/competenciaAtividade/createAtividades', verifyAuth.verifyAdmin, Agendamentos.createAtividades)
 
 export default router
