@@ -34,6 +34,11 @@ const EmpresaAtividade = sequelize.define('EmpresaAtividade', {
             model: Usuario,
             key: 'idUsuario'
         }
+    },
+    status: {
+        type: DataTypes.ENUM,
+        values: ['OK', 'SM'],
+        allowNull: true
     }
 },{
     tableName: 'EmpresaAtividade',

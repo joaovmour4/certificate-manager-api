@@ -190,6 +190,7 @@ export default class usuarioController{
             const idEmpresa = req.body.idEmpresa
             const idAtividade = req.body.idAtividade
             const idUsuario = req.body.idUsuario
+            const statusAtividade = req.body.statusAtividade
 
             const atividade = await EmpresaAtividade.findOne({where: {
                 EmpresaidEmpresa: idEmpresa,
@@ -201,7 +202,8 @@ export default class usuarioController{
 
             const updateAtividade = await atividade?.update({
                 dataRealizacao: new Date(),
-                idUsuario: idUsuario
+                idUsuario: idUsuario,
+                status: statusAtividade
             })
             const obrigacao = await Obrigacao.findByPk(atividade.dataValues.idObrigacao)
             const findAtividade = await Atividade.findByPk(idAtividade)
@@ -228,7 +230,8 @@ export default class usuarioController{
                 return res.status(404).json({error: 'A Empresa não realiza esta atividade.'})
 
             const updateAtividade = await atividade?.update({
-                dataRealizacao: null
+                dataRealizacao: null,
+                status: null
             })
 
             const obrigacao = await Obrigacao.findByPk(atividade.dataValues.idObrigacao)

@@ -127,7 +127,7 @@ export default class empresaController{
                     },
                     {
                         model: Atividade,
-                        through: {attributes: ['dataRealizacao']},
+                        through: {attributes: ['dataRealizacao', 'status']},
                         include: [
                             {
                                 model: Competencia,
@@ -138,8 +138,12 @@ export default class empresaController{
                             },
                             {
                                 model: Obrigacao,
-                                paranoid: 
-                                (actualDate.getMonth()+1 > mes || actualDate.getFullYear() > ano)
+                                paranoid: // mes atual seria getMonth()+1 porém precisamos do mes anterior
+                                (
+                                    (actualDate.getMonth() > mes && actualDate.getFullYear() == ano) 
+                                        || 
+                                    actualDate.getFullYear() > ano
+                                )
                             }
                         ],
                     }

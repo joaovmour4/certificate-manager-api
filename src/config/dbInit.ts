@@ -6,7 +6,7 @@ const env = process.env.ENVIRONMENT === 'DEV' // true or false
 
 const dbInit = async () =>{
     await sequelize.sync({
-        alter: false,
+        alter: true,
         force: false
     })
 }
