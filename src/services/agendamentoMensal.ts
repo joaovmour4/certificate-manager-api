@@ -11,7 +11,7 @@ import { Request, Response } from "express"
 export default class Agendamentos{
     static async createCompetenciasMensais(){
         try{
-            const mes = new Date().getMonth()+1 //////////////////
+            const mes = new Date().getMonth() //////////////////
             const ano = new Date().getFullYear()
 
             const find = await Competencia.findOne({where: {

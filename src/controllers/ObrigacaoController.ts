@@ -1,7 +1,7 @@
 import Obrigacao, { ObrigacaoAttributes } from "../schemas/ObrigacaoSchema";
 import { Request, Response } from "express";
 import Atividade from "../schemas/AtividadeSchema";
-import { Model, Op } from "sequelize";
+import { Model, ModelAttributes, Op } from "sequelize";
 import RegimeObrigacao, { RegimeObrigacaoAttributes } from "../schemas/RegimeObrigacaoSchema";
 import EmpresaAtividade from "../schemas/EmpresaAtividadeSchema";
 import Regime from "../schemas/RegimeSchema";
@@ -14,9 +14,10 @@ export default class ObrigacaoController{
         try{
             const obrigacaoName: string = req.body.name
             const obrigacaoShortName: string = req.body.shortName
-            const idRegime: number = req.body.idRegime
+            // const idRegime: number = req.body.idRegime
             const idSetor: number = req.body.idSetor
             const excecoes: Array<number> = JSON.parse(req.body.excecoes)
+            const regimes: Array<number> = JSON.parse(req.body.regimes)
 
             if(!obrigacaoName)
                 return res.status(400).json({error: 'Informe o nome da Obrigacao.'})
@@ -45,13 +46,15 @@ export default class ObrigacaoController{
                 return res.status(201).json({message: 'Obrigacao restaurada com sucesso.', newObrigacao})
             }
 
-            RegimeObrigacao.create({
-                ObrigacaoIdObrigacao: newObrigacao.dataValues.idObrigacao,
-                RegimeIdRegime: idRegime
+            regimes.map(idRegime => {
+                RegimeObrigacao.create({
+                    ObrigacaoIdObrigacao: newObrigacao.dataValues.idObrigacao,
+                    RegimeIdRegime: idRegime
+                })
             })
 
             const empresas = await Empresa.findAll({where:{
-                idRegime: idRegime
+                idRegime: regimes
             }})
 
             const actualDate = new Date()
@@ -60,14 +63,15 @@ export default class ObrigacaoController{
                 where: {
                     mes: {[Op.gte]: actualDate.getMonth()+1},
                     ano: {[Op.gte]: actualDate.getFullYear()}
-                }})
+                }}
+            )
 
-            for(const empresa of empresas){
-                for(const competencia of competencias){
-                    const atividade = await Atividade.create({
-                        idObrigacao: newObrigacao.dataValues.idObrigacao,
-                        idCompetencia: competencia.dataValues.idCompetencia
-                    })
+            for(const competencia of competencias){
+                const atividade = await Atividade.create({
+                    idObrigacao: newObrigacao.dataValues.idObrigacao,
+                    idCompetencia: competencia.dataValues.idCompetencia
+                })
+                for(const empresa of empresas){
                     if(excecoes.includes(1)) // ANUAL
                         console.log('ANUAL')
                     if(excecoes.includes(2) && empresa.dataValues.situacaoIE === 'SERVICO') // SERVICO
@@ -95,7 +99,7 @@ export default class ObrigacaoController{
             const obrigacaoName: string = req.body.obrigacaoName
             const obrigacaoShortName: string = req.body.obrigacaoShortName
             const idSetor: number = req.body.idSetor
-
+            const regimes: Array<number> = JSON.parse(req.body.regimes)
 
             const obrigacao = await Obrigacao.update({
                 obrigacaoName: obrigacaoName,
@@ -105,8 +109,28 @@ export default class ObrigacaoController{
                 idObrigacao: idObrigacao
             }})
 
+            await RegimeObrigacao.destroy({
+                where: {
+                    ObrigacaoIdObrigacao: idObrigacao,
+                    RegimeIdRegime: { [Op.notIn]: regimes }
+                }
+            });
 
-            if(obrigacao[0] === 0)
+            for (const idRegime of regimes) {
+                await RegimeObrigacao.findOrCreate({
+                    where: { 
+                        ObrigacaoIdObrigacao: idObrigacao,
+                        RegimeIdRegime: idRegime 
+                    },
+                    defaults: {
+                        ObrigacaoIdObrigacao: idObrigacao,
+                        RegimeIdRegime: idRegime
+                    }
+                });
+            }
+              
+
+            if(!obrigacao[0])
                 return res.status(400).json({message: 'Não foi possível alterar o registro.'})
             return res.status(200).json({message: 'Registro alterado com sucesso.'})
 
