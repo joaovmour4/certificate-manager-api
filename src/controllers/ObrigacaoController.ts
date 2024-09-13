@@ -1,5 +1,5 @@
 import Obrigacao, { ObrigacaoAttributes } from "../schemas/ObrigacaoSchema";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Atividade from "../schemas/AtividadeSchema";
 import { Model, ModelAttributes, Op } from "sequelize";
 import RegimeObrigacao, { RegimeObrigacaoAttributes } from "../schemas/RegimeObrigacaoSchema";
@@ -170,6 +170,46 @@ export default class ObrigacaoController{
 
         }catch(err: any){
             return res.status(500).json({error: err.message})
+        }
+    }
+    static async getObrigacoesCompetencia(req: Request, res: Response, next: NextFunction){
+        try{
+            const mes = req.query.mes
+            const ano = req.query.ano
+            const filter = req.query.filter
+            const search = req.query.search
+            const idSetor = req.query.setor
+
+            const competencia = new Date(`${mes}-1-${ano}`)
+
+            var whereCondition = {}
+            if(filter !== 'all')
+                whereCondition = {...whereCondition,
+                    idRegime: Number(filter)
+                }
+
+            const obrigacoes = await Obrigacao.findAll({
+                where: { 
+                    idSetor: idSetor,
+                    obrigacaoName: {
+                        [Op.like]: `%${search}%`
+                    },
+                    [Op.or]: [
+                        { deletedAt: { [Op.gte]: competencia } }, // Deletados após a data da competência
+                        { deletedAt: null } // Ou registros que não foram deletados
+                    ]
+                },
+                paranoid: false,
+                include: {
+                    model: Regime,
+                    through: {attributes: []},
+                    where: whereCondition
+                }
+            })
+            return res.status(200).json(obrigacoes)
+
+        }catch(err: any){
+            next(err)
         }
     }
     static async getObrigacao(req: Request, res: Response){

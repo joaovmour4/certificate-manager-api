@@ -443,3 +443,203 @@
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
     at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
     at Function.findAll (C:\Users\Cliente\Documents\JS\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:49:15.253Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:49:20.534Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:49:20.915Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:49:51.317Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:50:21.194Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:50:51.251Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:51:04.809Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:51:05.253Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:51:35.217Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:51:59.485Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:52:00.164Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:52:30.239Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:52:53.156Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-11T14:52:53.593Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:47.432Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:47.853Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:52.344Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:52.806Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:56.804Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:57.202Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:58.192Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:07:58.587Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:08:28.353Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:12:28.638Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:12:29.244Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:21:21.922Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:21:22.521Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:22:05.314Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:22:05.689Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:32:45.385Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:32:45.749Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:33:15.510Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:33:45.571Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
+[2024-09-12T12:34:15.522Z] - Error: 
+    at Query.run (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\mysql\query.js:46:25)
+    at C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\sequelize.js:650:28
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at MySQLQueryInterface.select (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\dialects\abstract\query-interface.js:1001:12)
+    at Function.findAll (C:\Users\Cliente\Documents\JS\integracao-gagliardi-dev\certificate-manager-api\node_modules\sequelize\src\model.js:1824:21)
