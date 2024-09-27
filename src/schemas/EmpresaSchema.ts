@@ -59,14 +59,6 @@ const Empresa = sequelize.define('Empresas', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    idUsuarioResponsavel: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: true,
-        references: {
-            model: Usuario,
-            key: 'idUsuario'
-        }
-    },
     situacaoFinanceiro: {
         type: DataTypes.JSON,
         allowNull: false
@@ -79,7 +71,6 @@ const Empresa = sequelize.define('Empresas', {
 
 Empresa.belongsTo(Regime, {foreignKey: 'idRegime'})
 Empresa.belongsTo(Usuario, {foreignKey: 'idUsuarioResponsavel', as: 'responsavel'})
-Usuario.hasMany(Empresa, {foreignKey: 'idUsuarioResponsavel'})
 
 export { EmpresaAttributes }
 export default Empresa

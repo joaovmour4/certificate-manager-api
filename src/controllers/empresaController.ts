@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { Op, Model, where } from "sequelize";
+import { Op, Model, where, Sequelize } from "sequelize";
 import Empresa, { EmpresaAttributes } from "../schemas/EmpresaSchema";
 import Regime from "../schemas/RegimeSchema";
 import Usuario, { UsuarioAttributes } from "../schemas/userSchema";
@@ -105,18 +105,21 @@ export default class empresaController{
             const empresas = await Empresa.findAll({where: whereCondition,
                 include: [
                     {
-                        model: Usuario,
-                        as: 'responsavel',
-                        where: userFilter
-                    },
-                    {
-                        model: Usuario,
-                        through: {attributes: []},
+                        model: SetorEmpresa,
+                        where: setorWhereCondition,
+                        include: [
+                            {
+                                model: Setor,
+                            },
+                            {
+                                model: Usuario
+                            }
+                        ]
                     },
                     {
                         model: Setor,
                         through: {attributes: []},
-                        where: setorWhereCondition
+                        where: setorWhereCondition,
                     },
                     {
                         model: Regime,
@@ -155,7 +158,7 @@ export default class empresaController{
 
             return res.status(200).json({empresas})
 
-        }catch(err){
+        }catch(err: any){
             next(err)
         }
     }
