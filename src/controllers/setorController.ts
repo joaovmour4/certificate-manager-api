@@ -1,5 +1,8 @@
 import { Response, Request } from "express"
 import Setor from "../schemas/SetorSchema"
+import Empresa from "../schemas/EmpresaSchema"
+import { Op } from "sequelize"
+import Regime from "../schemas/RegimeSchema"
 
 
 export default class setorController{
@@ -26,6 +29,36 @@ export default class setorController{
             const setores = await Setor.findAll()
 
             return res.status(200).json(setores)
+        }catch(err: any){
+            return res.status(500).json({error: err.message})
+        }
+    }
+    static async getEmpresasPerSetor(req: Request, res: Response){
+        try{
+            const setor = req.params.setor
+            const search = req.query.search
+
+            const empresas = await Empresa.findAll({
+                where: {
+                    nameEmpresa: {[Op.like]: `%${search}%`}
+                },
+                include: [
+                    {
+                        model: Regime,
+                    },
+                    {
+                        model: Setor,
+                        through: {attributes: []},
+                        where: {
+                            idSetor: setor
+                        },
+                        required: true
+                    }
+                ],
+            })
+
+            return res.status(200).json(empresas)
+
         }catch(err: any){
             return res.status(500).json({error: err.message})
         }

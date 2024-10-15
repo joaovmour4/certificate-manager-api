@@ -1,18 +1,15 @@
 import { NextFunction, Request, Response } from "express";
-import { Op, Model, where, Sequelize } from "sequelize";
+import { Op, Model } from "sequelize";
 import Empresa, { EmpresaAttributes } from "../schemas/EmpresaSchema";
 import Regime from "../schemas/RegimeSchema";
-import Usuario, { UsuarioAttributes } from "../schemas/userSchema";
+import Usuario from "../schemas/userSchema";
 import Atividade from "../schemas/AtividadeSchema";
 import Obrigacao from "../schemas/ObrigacaoSchema";
-import Competencia, { CompetenciaAttributes } from "../schemas/CompetenciaSchema";
+import Competencia from "../schemas/CompetenciaSchema";
 import Setor from "../schemas/SetorSchema";
 import SetorEmpresa from "../schemas/SetorEmpresaSchema";
 
-interface whereCondition{
-    nameEmpresa: string
-    idRegime?: string | number
-}
+
 interface Usuario{
     idUsuario: number
     username: string
@@ -103,6 +100,8 @@ export default class empresaController{
             }
 
             const empresas = await Empresa.findAll({where: whereCondition,
+                benchmark: true,
+                logging: console.log,
                 include: [
                     {
                         model: SetorEmpresa,
@@ -115,11 +114,6 @@ export default class empresaController{
                                 model: Usuario
                             }
                         ]
-                    },
-                    {
-                        model: Setor,
-                        through: {attributes: []},
-                        where: setorWhereCondition,
                     },
                     {
                         model: Regime,
@@ -141,6 +135,7 @@ export default class empresaController{
                             },
                             {
                                 model: Obrigacao,
+                                attributes: ['idObrigacao', 'obrigacaoName', 'obrigacaoShortName', 'idSetor'],
                                 paranoid: // mes atual seria getMonth()+1 porém precisamos do mes anterior
                                 (
                                     (actualDate.getMonth() > mes && actualDate.getFullYear() == ano) 
@@ -228,10 +223,14 @@ export default class empresaController{
         try{
             const idEmpresa: number = req.body.idEmpresa
             const idUsuario: number = req.body.idUsuario
+            const idSetor = req.query.setor
 
-            const updateEmpresa = await Empresa.update(
+            const updateEmpresa = await SetorEmpresa.update(
                 {idUsuarioResponsavel: idUsuario},
-                {where: { idEmpresa: idEmpresa }}
+                {where: { 
+                    idEmpresa: idEmpresa,
+                    idSetor: idSetor
+                }}
             )
 
             if(!updateEmpresa)

@@ -14,7 +14,6 @@ export default class ObrigacaoController{
         try{
             const obrigacaoName: string = req.body.name
             const obrigacaoShortName: string = req.body.shortName
-            // const idRegime: number = req.body.idRegime
             const idSetor: number = req.body.idSetor
             const excecoes: Array<number> = JSON.parse(req.body.excecoes)
             const regimes: Array<number> = JSON.parse(req.body.regimes)

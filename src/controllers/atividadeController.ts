@@ -9,10 +9,13 @@ export default class AtividadeController{
             const idObrigacao = req.body.idObrigacao
             const idEmpresa = req.body.idEmpresa
 
+            if(!idEmpresa)
+                return res.status(400).json({message: 'É necessário informar uma empresa.'})
+            
             const atividade = await Atividade.findOne({
                 where:{
                     idObrigacao: idObrigacao,
-                    idCompetencia: idCompetencia   
+                    idCompetencia: idCompetencia 
                 }
             })
 
@@ -23,9 +26,6 @@ export default class AtividadeController{
                 idObrigacao: idObrigacao,
                 EmpresaIdEmpresa: idEmpresa,
                 AtividadeIdAtividade: atividade.dataValues.idAtividade
-            })
-            .catch(error=>{
-                return res.status(400).json({message: 'Não foi possível inserir o registro.', error})
             })
 
 
