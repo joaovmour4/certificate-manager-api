@@ -189,6 +189,7 @@ export default class usuarioController{
         try{
             const idEmpresa = req.body.idEmpresa
             const idAtividade = req.body.idAtividade
+            const idCompetencia = req.body.idCompetencia
             const idUsuario = req.body.idUsuario
             const statusAtividade = req.body.statusAtividade
 
@@ -205,11 +206,41 @@ export default class usuarioController{
                 idUsuario: idUsuario,
                 status: statusAtividade
             })
+
+            
             const obrigacao = await Obrigacao.findByPk(atividade.dataValues.idObrigacao)
             const findAtividade = await Atividade.findByPk(idAtividade)
             const competencia = await Competencia.findByPk(findAtividade?.dataValues.idCompetencia)
             const empresa = await Empresa.findByPk(idEmpresa)
             await logAtividade(res.user.username, true, obrigacao?.dataValues.obrigacaoName, `${competencia?.dataValues.mes}/${competencia?.dataValues.ano}`, empresa?.dataValues.nameEmpresa)
+
+            if(obrigacao?.dataValues.obrigacaoName === 'DEI' && statusAtividade === 'SM'){
+                const atividade = await Atividade.findOne({
+                    where: {
+                        idObrigacao: 2,
+                        idCompetencia: idCompetencia
+                    },
+                    include:[ 
+                        {
+                            model: Empresa,
+                            where: {
+                                idEmpresa: idEmpresa
+                            }
+                        }
+                    ]
+                })
+                const empresaAtividade = await EmpresaAtividade.findOne({
+                    where: {
+                        idEmpresaAtividade: atividade?.dataValues.Empresas[0].EmpresaAtividade.idEmpresaAtividade
+                    }
+                })
+
+                await empresaAtividade?.update({
+                    dataRealizacao: new Date(),
+                    idUsuario: idUsuario,
+                    status: statusAtividade
+                })
+            }
             
             return res.status(200).json({message: 'Atividade finalizada com sucesso.', updateAtividade})
         }catch(err: any){
