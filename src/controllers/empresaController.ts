@@ -73,6 +73,7 @@ export default class empresaController{
             const idSetor = Number(req.query.setor)
             const orderField = String(req.query.of) // Campo que receberá ordenação
             const order = req.query.o === 'true' ? 'ASC' : 'DESC' // Ordenação crescente ou decrescente, boolean
+            const filterByUsers = String(req.query.uf).split(',')
             const user: any = await Usuario.findByPk(idUsuario)
 
             const actualDate = new Date()
@@ -81,15 +82,18 @@ export default class empresaController{
 
             let userFilter: {} | undefined = {}
 
-            if(user.cargo !== 'admin' && user.cargo !== 'supervisor')
-                userFilter = {idUsuario: idUsuario}
-            else
-                userFilter = undefined
-            
-            if(user.cargo !== 'admin')
-                setorWhereCondition = {idSetor: user.idSetor}
-            else
-                setorWhereCondition = {idSetor: idSetor}
+            userFilter = user.cargo !== 'admin' && user.cargo !== 'supervisor' ? {idUsuario: idUsuario} : undefined
+
+            setorWhereCondition = {
+                idSetor: user.cargo === 'admin' ? idSetor : user.idSetor
+            }
+
+            if(filterByUsers.length && filterByUsers[0].length){//String vazia está retornando o array ['']
+                setorWhereCondition = {
+                    ...setorWhereCondition,
+                    idUsuarioResponsavel: {[Op.in]: filterByUsers}
+                }
+            }
 
             if(filter !== 'all')
                 whereCondition = {idRegime: Number(filter)}
@@ -100,8 +104,6 @@ export default class empresaController{
             }
 
             const empresas = await Empresa.findAll({where: whereCondition,
-                benchmark: true,
-                logging: console.log,
                 include: [
                     {
                         model: SetorEmpresa,
