@@ -46,7 +46,7 @@ const EmpresaAtividade = sequelize.define('EmpresaAtividade', {
 })
 
 Empresa.belongsToMany(Atividade, {through: EmpresaAtividade})
-Atividade.belongsToMany(Empresa, {through: EmpresaAtividade})
+Atividade.belongsToMany(Empresa, {through: EmpresaAtividade, onDelete:'CASCADE'})
 EmpresaAtividade.belongsTo(Usuario, {foreignKey: 'idUsuario'})
 Usuario.hasMany(EmpresaAtividade, {foreignKey: 'idUsuario'})
 

@@ -1,6 +1,9 @@
 # .js files
 build*/
 
+# config sequelize-cli files
+/config
+
 # .exe build files
 *.exe
 
